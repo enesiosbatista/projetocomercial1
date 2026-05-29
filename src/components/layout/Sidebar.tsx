@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Link, useRouterState } from '@tanstack/react-router';
+import { Link, useRouterState, useNavigate } from '@tanstack/react-router';
 import {
   Brain,
   ChevronLeft,
@@ -13,9 +12,7 @@ import {
 import { mockAnalysisList, mockUser } from '@/lib/mockData';
 import { getScoreColor } from '@/lib/utils';
 
-const STORAGE_KEY = 'viralmind_sidebar_collapsed';
-
-const nav: { to: string; label: string; icon: typeof Home; exact?: boolean }[] = [
+const nav = [
   { to: '/', label: 'Início', icon: Home, exact: true },
   { to: '/analyze', label: 'Nova Análise', icon: Search },
   { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -23,21 +20,14 @@ const nav: { to: string; label: string; icon: typeof Home; exact?: boolean }[] =
   { to: '/insights', label: 'IA Consultora', icon: Brain },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  collapsed: boolean;
+  onToggle: () => void;
+}
+
+export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const [collapsed, setCollapsed] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem(STORAGE_KEY) === '1') setCollapsed(true);
-  }, []);
-
-  const toggle = () => {
-    setCollapsed((c) => {
-      const next = !c;
-      localStorage.setItem(STORAGE_KEY, next ? '1' : '0');
-      return next;
-    });
-  };
+  const navigate = useNavigate();
 
   const recents = mockAnalysisList.slice(0, 3);
   const initials = mockUser.username
@@ -48,21 +38,26 @@ export function Sidebar() {
 
   return (
     <aside
-      className={`hidden shrink-0 flex-col border-r border-zinc-800 bg-zinc-950 transition-all duration-300 lg:flex ${
-        collapsed ? 'w-16' : 'w-60'
+      className={`fixed left-0 top-0 h-full bg-zinc-950 border-r border-zinc-800 flex flex-col z-40 transition-all duration-300 lg:block hidden ${
+        collapsed ? 'w-[64px]' : 'w-[240px]'
       }`}
     >
-      <div className="relative flex h-14 items-center border-b border-zinc-800 px-3">
+      <div className="relative flex h-14 items-center px-3">
         {!collapsed && (
           <Link to="/" className="flex items-center gap-2">
-            <Zap className="h-4 w-4 text-violet-500" fill="currentColor" />
+            <Zap className="h-4 w-4 text-violet-500 shrink-0" fill="currentColor" />
             <span className="text-sm font-bold text-white">ViralMind AI</span>
           </Link>
         )}
+        {collapsed && (
+          <div className="flex w-full justify-center">
+            <Zap className="h-4 w-4 text-violet-500" fill="currentColor" />
+          </div>
+        )}
         <button
-          onClick={toggle}
+          onClick={onToggle}
           title={collapsed ? 'Expandir' : 'Recolher'}
-          className="ml-auto rounded-md p-1.5 text-zinc-500 transition hover:bg-zinc-900 hover:text-zinc-200"
+          className="absolute right-3 top-4 text-zinc-500 hover:text-zinc-200"
         >
           {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
         </button>
@@ -76,10 +71,10 @@ export function Sidebar() {
               key={to}
               to={to}
               title={collapsed ? label : undefined}
-              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors ${
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                 active
-                  ? 'border-l-2 border-violet-500 bg-violet-950/50 font-medium text-violet-400'
-                  : 'text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200'
+                  ? 'bg-violet-950/50 text-violet-400 border-l-2 border-violet-500 font-medium'
+                  : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50'
               } ${collapsed ? 'justify-center' : ''}`}
             >
               <Icon className="h-4 w-4 shrink-0" />
@@ -91,48 +86,51 @@ export function Sidebar() {
 
       {!collapsed && (
         <div className="mt-3 flex-1 overflow-y-auto px-3">
-          <h4 className="mb-2 px-3 text-xs uppercase tracking-wider text-zinc-500">
-            Recentes
+          <h4 className="text-xs text-zinc-500 uppercase tracking-wider px-3 mt-5 mb-2">
+            RECENTES
           </h4>
           <ul className="space-y-1">
-            {recents.map((a) => (
-              <li key={a.id}>
-                <Link
-                  to="/result/$id"
-                  params={{ id: a.id }}
-                  className="flex items-center gap-2 rounded-lg px-3 py-2 transition hover:bg-zinc-800/50"
+            {recents.map((analysis) => (
+              <li key={analysis.id}>
+                <div
+                  onClick={() => navigate({ to: '/result/$id', params: { id: analysis.id } })}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-zinc-800/50 cursor-pointer"
                 >
                   <img
-                    src={a.thumbnail_url}
+                    src={analysis.thumbnail_url}
                     alt=""
                     loading="lazy"
-                    className="h-8 w-8 shrink-0 rounded-md object-cover"
+                    className="w-8 h-8 rounded-md object-cover shrink-0"
                   />
-                  <span className="flex-1 truncate text-xs text-zinc-300">{a.title}</span>
-                  <span className={`font-mono text-xs ${getScoreColor(a.viral_score)}`}>
-                    {a.viral_score}
+                  <div className="min-w-0 flex-1 flex flex-col">
+                    <span className="text-xs text-zinc-300 line-clamp-1">
+                      {analysis.title}
+                    </span>
+                  </div>
+                  <span className={`text-xs font-mono shrink-0 ${getScoreColor(analysis.viral_score)}`}>
+                    {analysis.viral_score}
                   </span>
-                </Link>
+                </div>
               </li>
             ))}
           </ul>
         </div>
       )}
 
-      <div className="mt-auto border-t border-zinc-800 p-3">
+      <div className="mt-auto flex items-center gap-2 p-3 border-t border-zinc-800">
         <Link
           to="/profile"
-          className={`flex items-center gap-2 rounded-lg p-1 transition hover:bg-zinc-800/50 ${
+          className={`flex items-center gap-2 rounded-lg p-1 transition hover:bg-zinc-800/50 w-full ${
             collapsed ? 'justify-center' : ''
           }`}
         >
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-700 text-xs font-bold text-white">
+          <div className="w-8 h-8 rounded-full bg-violet-700 flex items-center justify-center text-xs font-bold shrink-0 text-white">
             {initials}
           </div>
           {!collapsed && (
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium text-white">{mockUser.username}</p>
-              <span className="mt-0.5 inline-block rounded bg-zinc-700 px-1.5 py-0.5 text-xs text-zinc-400">
+              <p className="text-sm font-medium text-white truncate">{mockUser.username}</p>
+              <span className="text-xs bg-zinc-700 rounded px-1.5 py-0.5 text-zinc-400 block w-fit mt-0.5">
                 Plano {mockUser.plan === 'free' ? 'Free' : mockUser.plan}
               </span>
             </div>
@@ -142,3 +140,4 @@ export function Sidebar() {
     </aside>
   );
 }
+

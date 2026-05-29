@@ -65,32 +65,37 @@ function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090B] text-foreground">
+    <div className="min-h-screen bg-[#09090B] text-white">
       <header className="flex items-center justify-between px-6 py-5">
         <div className="flex items-center gap-2">
           <Zap className="h-5 w-5 text-violet-400" fill="currentColor" />
           <span className="text-base font-bold text-violet-400">ViralMind</span>
         </div>
-        <a
-          href="/analyze"
-          className="text-sm font-medium text-zinc-400 hover:text-zinc-200"
+        <Link
+          to="/analyze"
+          className="text-sm font-medium text-zinc-400 hover:text-zinc-200 transition-colors"
         >
           Entrar
-        </a>
+        </Link>
       </header>
 
-      {/* Hero */}
-      <section className="mx-auto max-w-3xl px-4 pt-16 pb-16 text-center md:pt-24">
-        <motion.div {...fadeInUp} transition={{ ...fadeInUp.transition, delay: 0 }}>
-          <span className="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900 px-4 py-1.5 text-sm text-violet-400">
+      {/* Hero Section */}
+      <section className="max-w-3xl mx-auto text-center px-4 pt-24 pb-16">
+        {/* 1. Badge */}
+        <motion.div
+          {...fadeInUp}
+          transition={{ ...fadeInUp.transition, delay: 0 }}
+        >
+          <span className="border border-zinc-700 bg-zinc-900 text-violet-400 text-sm px-4 py-1.5 rounded-full inline-flex items-center gap-2">
             🔥 +12.847 vídeos analisados esta semana
           </span>
         </motion.div>
 
+        {/* 2. H1 */}
         <motion.h1
           {...fadeInUp}
           transition={{ ...fadeInUp.transition, delay: 0.1 }}
-          className="mt-6 text-5xl font-black leading-none tracking-tight sm:text-6xl lg:text-7xl"
+          className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none mt-6 text-white"
         >
           Descubra por que vídeos{' '}
           <span className="bg-gradient-to-r from-violet-500 to-cyan-400 bg-clip-text text-transparent">
@@ -98,66 +103,69 @@ function LandingPage() {
           </span>
         </motion.h1>
 
+        {/* 3. Subtítulo */}
         <motion.p
           {...fadeInUp}
           transition={{ ...fadeInUp.transition, delay: 0.2 }}
-          className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-zinc-400"
+          className="text-lg text-zinc-400 max-w-xl mx-auto mt-5 leading-relaxed"
         >
-          Cole o link de qualquer vídeo e a IA analisa em segundos por que
-          viralizou — ou o que falta para viralizar.
+          Cole o link de qualquer vídeo e a IA analisa em segundos por que viralizou — ou o que falta para viralizar.
         </motion.p>
 
+        {/* 4. Input + CTA */}
         <motion.form
           {...fadeInUp}
           transition={{ ...fadeInUp.transition, delay: 0.3 }}
           onSubmit={handleSubmit}
-          className="mx-auto mt-8 flex max-w-2xl flex-col gap-3 sm:flex-row"
+          className="flex flex-col sm:flex-row gap-3 mt-8 max-w-2xl mx-auto"
         >
           <div className="relative flex-1">
-            <Link2 className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" />
+            <Link2 className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 w-4 h-4" />
             <input
               type="url"
+              required
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="Cole o link do YouTube, TikTok, Reels ou Shorts..."
-              className="h-14 w-full rounded-xl border border-zinc-700 bg-zinc-900 pl-11 pr-4 text-sm text-zinc-100 placeholder-zinc-500 transition-colors focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500/50"
+              className="w-full h-14 bg-zinc-900 border border-zinc-700 rounded-xl pl-11 pr-4 text-zinc-100 placeholder-zinc-500 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500/50 transition-colors text-sm"
             />
           </div>
 
           <select
             value={platform}
             onChange={(e) => setPlatform(e.target.value as Platform)}
-            className="h-14 rounded-xl border border-zinc-700 bg-zinc-900 px-3 text-sm text-zinc-300 focus:border-violet-500 focus:outline-none sm:w-40"
+            className="w-full sm:w-40 h-14 bg-zinc-900 border border-zinc-700 rounded-xl px-3 text-zinc-300 text-sm focus:border-violet-500 focus:outline-none"
           >
-            {platformOptions.map((o) => (
-              <option key={o.value} value={o.value}>
-                {o.emoji} {o.label}
-              </option>
-            ))}
+            <option value="youtube">🎬 YouTube</option>
+            <option value="shorts">📱 Shorts</option>
+            <option value="tiktok">🎵 TikTok</option>
+            <option value="reels">📸 Reels</option>
           </select>
 
           <motion.button
             type="submit"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex h-14 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-violet-600 px-8 text-sm font-semibold text-white transition-colors hover:bg-violet-500"
+            className="h-14 px-8 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl whitespace-nowrap transition-colors text-sm flex items-center justify-center gap-2"
           >
-            Analisar Agora <ArrowRight className="h-4 w-4" />
+            Analisar Agora →
           </motion.button>
         </motion.form>
 
+        {/* 5. Micro-copy */}
         <motion.p
           {...fadeInUp}
           transition={{ ...fadeInUp.transition, delay: 0.4 }}
-          className="mt-3 text-sm text-zinc-500"
+          className="text-sm text-zinc-500 mt-3"
         >
-          ✓ Grátis para começar &nbsp; ✓ Sem cadastro &nbsp; ✓ Resultado em 30s
+          ✓ Grátis para começar ✓ Sem cadastro ✓ Resultado em 30s
         </motion.p>
 
+        {/* 6. Social proof */}
         <motion.div
           {...fadeInUp}
           transition={{ ...fadeInUp.transition, delay: 0.5 }}
-          className="mt-5 flex items-center justify-center gap-3 text-sm text-zinc-400"
+          className="flex items-center justify-center gap-3 mt-5"
         >
           <div className="flex -space-x-2">
             {[
@@ -167,22 +175,24 @@ function LandingPage() {
             ].map((a) => (
               <div
                 key={a.initials}
-                className={`flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#09090B] text-xs font-bold text-white ${a.bg}`}
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border border-zinc-850 text-white shrink-0 ${a.bg}`}
               >
                 {a.initials}
               </div>
             ))}
           </div>
-          <span>★★★★★ &nbsp; Usado por mais de 3.200 criadores</span>
+          <span className="text-sm text-zinc-400">
+            ★★★★★ Usado por mais de 3.200 criadores
+          </span>
         </motion.div>
       </section>
 
-      {/* Features */}
-      <section className="mx-auto mt-24 max-w-5xl px-4 pb-24">
-        <h2 className="mb-3 text-center text-3xl font-bold">
+      {/* Seção Features */}
+      <section className="mt-24 px-4 max-w-5xl mx-auto pb-24">
+        <h2 className="text-3xl font-bold text-center mb-3">
           Tudo que você precisa para viralizar
         </h2>
-        <p className="mb-12 text-center text-base text-zinc-400">
+        <p className="text-base text-zinc-400 text-center mb-12">
           Do diagnóstico ao roteiro — tudo em um lugar
         </p>
 
@@ -191,18 +201,18 @@ function LandingPage() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, margin: '-80px' }}
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
         >
           {features.map(({ icon: Icon, color, title, desc }) => (
             <motion.div
               key={title}
               variants={staggerItem}
-              className="rounded-xl border border-zinc-800 bg-zinc-900 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-violet-500/40"
+              className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-violet-500/40 hover:-translate-y-0.5 transition-all duration-200"
             >
-              <Icon className={`h-6 w-6 ${color}`} />
+              <Icon className={`w-6 h-6 ${color}`} />
               <div className="mt-4">
-                <h3 className="mb-1 text-sm font-semibold">{title}</h3>
-                <p className="text-xs leading-relaxed text-zinc-400">{desc}</p>
+                <h3 className="font-semibold text-sm mb-1">{title}</h3>
+                <p className="text-xs text-zinc-400 leading-relaxed">{desc}</p>
               </div>
             </motion.div>
           ))}
@@ -210,7 +220,7 @@ function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="mt-8 border-t border-zinc-800 py-8 text-center">
+      <footer className="mt-8 py-8 border-t border-zinc-800 text-center">
         <p className="text-sm text-zinc-600">
           © 2026 ViralMind AI — Todos os direitos reservados
         </p>

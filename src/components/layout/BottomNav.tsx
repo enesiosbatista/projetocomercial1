@@ -11,7 +11,7 @@ const items: { to: string; label: string; icon: typeof Home; exact?: boolean }[]
 export function BottomNav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-50 flex h-16 items-center justify-around border-t border-zinc-800 bg-zinc-950/95 px-2 backdrop-blur-md lg:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 h-16 border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md flex items-center justify-around px-2 lg:hidden z-50">
       {items.map(({ to, label, icon: Icon, exact }) => {
         const active = exact ? pathname === to : pathname.startsWith(to);
         return (

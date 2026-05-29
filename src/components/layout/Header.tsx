@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from '@tanstack/react-router';
+import { Link, useNavigate } from '@tanstack/react-router';
 import { Bell, Plus } from 'lucide-react';
 import { mockUser } from '@/lib/mockData';
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const initials = mockUser.username
     .split(' ')
@@ -15,73 +16,81 @@ export function Header() {
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
     };
     document.addEventListener('mousedown', onClick);
     return () => document.removeEventListener('mousedown', onClick);
   }, []);
 
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-zinc-800 bg-background/80 px-4 backdrop-blur md:px-6">
-      <div className="flex items-center gap-3 md:hidden">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="text-violet-400">⚡</span>
-          <span className="text-sm font-bold text-white">ViralMind</span>
+    <header className="fixed top-0 left-0 right-0 h-14 z-50 bg-zinc-950/95 backdrop-blur-sm border-b border-zinc-800 flex items-center justify-between px-4">
+      <div className="flex items-center gap-3 lg:hidden">
+        <Link to="/" className="text-sm font-bold text-white flex items-center gap-2">
+          <span>⚡</span>
+          <span>ViralMind</span>
         </Link>
       </div>
+      <div className="hidden lg:block" />
 
-      <div className="ml-auto flex items-center gap-2 md:gap-3">
-        <Link
-          to="/analyze"
-          className="hidden items-center gap-1.5 rounded-lg bg-violet-600 px-3 py-1.5 text-sm font-semibold text-white transition hover:bg-violet-500 md:inline-flex"
-        >
-          <Plus size={14} /> Nova Análise
-        </Link>
-
-        <span className="hidden rounded-md bg-zinc-800 px-2.5 py-1 text-xs font-medium text-zinc-300 sm:inline">
+      <div className="flex items-center gap-3">
+        <div className="bg-zinc-800 border border-zinc-700 text-zinc-300 text-xs rounded-full px-3 py-1">
           {mockUser.credits} créditos
-        </span>
+        </div>
 
         <button
-          aria-label="Notificações"
-          className="relative rounded-md p-2 text-zinc-400 transition hover:bg-zinc-900 hover:text-zinc-200"
+          onClick={() => navigate({ to: '/analyze' })}
+          className="hidden lg:flex bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-4 h-8 rounded-lg items-center gap-1.5 transition-colors"
         >
-          <Bell size={16} />
-          <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+          <Plus size={14} />
+          <span>Nova Análise</span>
+        </button>
+
+        <div className="relative">
+          <Bell className="w-5 h-5 text-zinc-400 hover:text-zinc-200 cursor-pointer transition-colors" />
+          <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 rounded-full text-[10px] flex items-center justify-center font-bold text-white">
             2
           </span>
-        </button>
+        </div>
 
         <div ref={ref} className="relative">
           <button
             onClick={() => setOpen((o) => !o)}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-cyan-500 text-xs font-bold text-white transition hover:scale-105"
+            className="w-8 h-8 rounded-full bg-violet-700 flex items-center justify-center text-xs font-bold cursor-pointer text-white transition hover:scale-105"
           >
             {initials}
           </button>
           {open && (
-            <div className="absolute right-0 top-10 z-40 w-44 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 shadow-xl">
-              <Link
-                to="/profile"
-                onClick={() => setOpen(false)}
-                className="block px-4 py-2.5 text-sm text-zinc-200 transition hover:bg-zinc-800"
+            <div className="absolute right-0 top-10 bg-zinc-900 border border-zinc-800 rounded-xl shadow-xl p-1 w-48 z-50">
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  navigate({ to: '/profile' });
+                }}
+                className="block w-full text-left px-4 py-2.5 text-sm text-zinc-200 transition hover:bg-zinc-800 rounded-lg"
               >
                 Meu Perfil
-              </Link>
+              </button>
               <button
-                onClick={() => setOpen(false)}
-                className="block w-full px-4 py-2.5 text-left text-sm text-zinc-200 transition hover:bg-zinc-800"
+                onClick={() => {
+                  setOpen(false);
+                  alert('Em breve');
+                }}
+                className="block w-full text-left px-4 py-2.5 text-sm text-zinc-200 transition hover:bg-zinc-800 rounded-lg"
               >
                 Configurações
               </button>
-              <div className="border-t border-zinc-800" />
-              <Link
-                to="/"
-                onClick={() => setOpen(false)}
-                className="block px-4 py-2.5 text-sm text-red-400 transition hover:bg-zinc-800"
+              <div className="border-t border-zinc-800 my-1" />
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  navigate({ to: '/' });
+                }}
+                className="block w-full text-left px-4 py-2.5 text-sm text-red-400 transition hover:bg-zinc-800 rounded-lg"
               >
                 Sair
-              </Link>
+              </button>
             </div>
           )}
         </div>
@@ -89,3 +98,4 @@ export function Header() {
     </header>
   );
 }
+
