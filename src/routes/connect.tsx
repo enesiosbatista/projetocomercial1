@@ -3,7 +3,7 @@ import { AppLayout } from '@/components/layout/AppLayout';
 
 export const Route = createFileRoute('/connect')({
   head: () => ({
-    meta: [{ title: 'Conectar contas — ViralMind AI' }],
+    meta: [{ title: 'Conectar contas — ViralMind System' }],
   }),
   component: ConnectPage,
 });

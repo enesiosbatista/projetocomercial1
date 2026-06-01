@@ -1,12 +1,14 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { useMemo, useState } from 'react';
 import { ChevronDown, SearchX, Sparkles } from 'lucide-react';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { AnalysisCard } from '@/components/features/AnalysisCard';
-import { mockAnalysisList, mockUser } from '@/lib/mockData';
+import { OnboardingModal } from '@/components/features/OnboardingModal';
+import { mockAnalysisList } from '@/lib/mockData';
+import { useAuth } from '@/hooks/useAuth';
 
 export const Route = createFileRoute('/dashboard')({
-  head: () => ({ meta: [{ title: 'Dashboard — ViralMind AI' }] }),
+  head: () => ({ meta: [{ title: 'Dashboard — ViralMind System' }] }),
   component: DashboardPage,
 });
 
@@ -23,6 +25,8 @@ const formatDate = () => {
 };
 
 function DashboardPage() {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [filter, setFilter] = useState<Filter>('all');
   const [sort, setSort] = useState<Sort>('recent');
   const [favorites, setFavorites] = useState<Set<string>>(
@@ -30,6 +34,13 @@ function DashboardPage() {
   );
   const [deleted, setDeleted] = useState<Set<string>>(new Set());
   const [favOpen, setFavOpen] = useState(false);
+
+  const username = user?.username || 'João Silva';
+  const plan = user?.plan || 'free';
+  const credits = user?.credits ?? 3;
+
+  const creditsTotal = plan === 'elite' ? 999 : plan === 'pro' ? 50 : 3;
+  const creditPct = Math.min(100, (credits / creditsTotal) * 100);
 
   const list = useMemo(() => {
     let arr = mockAnalysisList.filter((a) => !deleted.has(a.id));
@@ -55,47 +66,61 @@ function DashboardPage() {
   const remove = (id: string) =>
     setDeleted((prev) => new Set(prev).add(id));
 
-  const creditsTotal = 5;
-  const creditPct = (mockUser.credits / creditsTotal) * 100;
-
   return (
     <AppLayout>
-      <div className="mx-auto w-full max-w-7xl px-4 py-6 md:px-6 md:py-8">
+      {/* Onboarding trigger */}
+      <OnboardingModal />
+
+      <div className="mx-auto w-full max-w-7xl px-4 py-6 md:px-6 md:py-8 text-white">
         {/* Header */}
         <header>
           <h1 className="text-2xl font-bold text-white md:text-3xl">
-            Olá, {mockUser.username} 👋
+            Olá, {username} 👋
           </h1>
           <p className="mt-1 text-sm capitalize text-zinc-400">{formatDate()}</p>
         </header>
 
         {/* Credits */}
-        <section className="mt-6 grid grid-cols-1 gap-4 rounded-2xl border border-violet-800 bg-gradient-to-br from-zinc-900 to-violet-950/50 p-5 md:grid-cols-2 md:p-6">
+        <section className="mt-6 grid grid-cols-1 gap-4 rounded-2xl border border-violet-800 bg-gradient-to-br from-zinc-900 to-violet-950/50 p-5 md:grid-cols-2 md:p-6 shadow-[0_0_0_1px_#3F3F46,0_4px_24px_rgba(0,0,0,0.4)]">
           <div>
-            <span className="inline-block rounded-md bg-zinc-700 px-2 py-0.5 text-xs font-medium text-zinc-200">
-              Plano Gratuito
+            <span className={`inline-block rounded-md px-2 py-0.5 text-xs font-bold uppercase border ${
+              plan === 'elite' 
+                ? 'bg-cyan-950 text-cyan-400 border-cyan-900' 
+                : plan === 'pro' 
+                ? 'bg-violet-950 text-violet-400 border-violet-900' 
+                : 'bg-zinc-800 text-zinc-300 border-zinc-700'
+            }`}>
+              Plano {plan === 'free' ? 'Gratuito' : plan === 'pro' ? 'Pro' : 'Elite'}
             </span>
-            <p className="mt-3 text-2xl font-bold text-white">
-              {mockUser.credits} créditos restantes
+            <p className="mt-3 text-2xl font-bold text-white font-mono">
+              {plan === 'elite' ? '∞' : credits} créditos restantes
             </p>
             <p className="mt-1 text-sm text-zinc-400">Cada análise usa 1 crédito</p>
             <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-zinc-800">
               <div
-                className="h-full rounded-full bg-violet-500 transition-all"
+                className={`h-full rounded-full transition-all ${
+                  plan === 'elite' ? 'bg-cyan-400' : 'bg-violet-500'
+                }`}
                 style={{ width: `${creditPct}%` }}
               />
             </div>
           </div>
+          
           <div className="flex flex-col justify-between rounded-xl border border-violet-700/50 bg-zinc-900/60 p-4">
             <div>
-              <p className="text-sm font-semibold text-violet-300">Pro — R$47/mês</p>
+              <p className="text-sm font-semibold text-violet-300">ViralMind Pro — R$47/mês</p>
               <p className="mt-1 text-xs text-zinc-400">
-                50 análises/mês + prioridade na fila
+                50 análises/mês + ganchos IA + prioridade na fila de geração
               </p>
             </div>
-            <button className="mt-3 inline-flex items-center justify-center gap-1 rounded-lg bg-violet-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-violet-500">
-              <Sparkles size={14} /> Fazer Upgrade →
-            </button>
+            {plan !== 'elite' && (
+              <button 
+                onClick={() => navigate({ to: '/pricing' })}
+                className="mt-3 inline-flex items-center justify-center gap-1 rounded-lg bg-violet-600 hover:bg-violet-500 text-sm font-semibold text-white px-4 py-2 transition cursor-pointer active:scale-95 shadow-md shadow-violet-950"
+              >
+                <Sparkles size={14} /> Fazer Upgrade →
+              </button>
+            )}
           </div>
         </section>
 
@@ -112,7 +137,7 @@ function DashboardPage() {
               <button
                 key={f.id}
                 onClick={() => setFilter(f.id)}
-                className={`rounded-full border px-3 py-1.5 text-xs font-medium transition ${
+                className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition cursor-pointer ${
                   filter === f.id
                     ? 'border-violet-500 bg-violet-950/40 text-white'
                     : 'border-zinc-700 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200'
@@ -137,7 +162,7 @@ function DashboardPage() {
         <section className="mt-6">
           <h2 className="mb-4 text-lg font-semibold text-white">Suas Análises</h2>
           {list.length === 0 ? (
-            <div className="flex flex-col items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-900 p-12 text-center">
+            <div className="flex flex-col items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-900 p-12 text-center shadow-[0_0_0_1px_#3F3F46,0_4px_24px_rgba(0,0,0,0.4)]">
               <SearchX size={48} className="text-zinc-600" />
               <p className="mt-3 text-zinc-400">Nenhuma análise encontrada</p>
               <Link
@@ -164,14 +189,14 @@ function DashboardPage() {
         </section>
 
         {/* Favorites accordion */}
-        <section className="mt-8 rounded-2xl border border-zinc-800 bg-zinc-900/50">
+        <section className="mt-8 rounded-2xl border border-zinc-800 bg-zinc-900/50 shadow-[0_0_0_1px_#3F3F46,0_4px_24px_rgba(0,0,0,0.4)]">
           <button
             onClick={() => setFavOpen((o) => !o)}
-            className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left"
+            className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left cursor-pointer"
           >
             <span className="flex items-center gap-2 text-base font-semibold text-white">
               ⭐ Favoritos
-              <span className="rounded-full bg-amber-900/50 px-2 py-0.5 text-xs text-amber-300">
+              <span className="rounded-full bg-amber-900/50 px-2 py-0.5 text-xs text-amber-300 font-bold">
                 {favList.length}
               </span>
             </span>
@@ -205,3 +230,4 @@ function DashboardPage() {
     </AppLayout>
   );
 }
+export { DashboardPage };

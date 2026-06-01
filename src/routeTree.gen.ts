@@ -16,6 +16,11 @@ import { Route as ConnectRouteImport } from './routes/connect'
 import { Route as AnalyzeRouteImport } from './routes/analyze'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResultIdRouteImport } from './routes/result.$id'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
@@ -52,6 +57,31 @@ const ResultIdRoute = ResultIdRouteImport.update({
   path: '/result/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +91,11 @@ export interface FileRoutesByFullPath {
   '/insights': typeof InsightsRoute
   '/profile': typeof ProfileRoute
   '/result/$id': typeof ResultIdRoute
+  '/auth': typeof AuthRoute
+  '/pricing': typeof PricingRoute
+  '/admin': typeof AdminRoute
+  '/terms': typeof TermsRoute
+  '/privacy': typeof PrivacyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +105,11 @@ export interface FileRoutesByTo {
   '/insights': typeof InsightsRoute
   '/profile': typeof ProfileRoute
   '/result/$id': typeof ResultIdRoute
+  '/auth': typeof AuthRoute
+  '/pricing': typeof PricingRoute
+  '/admin': typeof AdminRoute
+  '/terms': typeof TermsRoute
+  '/privacy': typeof PrivacyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +120,11 @@ export interface FileRoutesById {
   '/insights': typeof InsightsRoute
   '/profile': typeof ProfileRoute
   '/result/$id': typeof ResultIdRoute
+  '/auth': typeof AuthRoute
+  '/pricing': typeof PricingRoute
+  '/admin': typeof AdminRoute
+  '/terms': typeof TermsRoute
+  '/privacy': typeof PrivacyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +136,11 @@ export interface FileRouteTypes {
     | '/insights'
     | '/profile'
     | '/result/$id'
+    | '/auth'
+    | '/pricing'
+    | '/admin'
+    | '/terms'
+    | '/privacy'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +150,11 @@ export interface FileRouteTypes {
     | '/insights'
     | '/profile'
     | '/result/$id'
+    | '/auth'
+    | '/pricing'
+    | '/admin'
+    | '/terms'
+    | '/privacy'
   id:
     | '__root__'
     | '/'
@@ -109,6 +164,11 @@ export interface FileRouteTypes {
     | '/insights'
     | '/profile'
     | '/result/$id'
+    | '/auth'
+    | '/pricing'
+    | '/admin'
+    | '/terms'
+    | '/privacy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +179,11 @@ export interface RootRouteChildren {
   InsightsRoute: typeof InsightsRoute
   ProfileRoute: typeof ProfileRoute
   ResultIdRoute: typeof ResultIdRoute
+  AuthRoute: typeof AuthRoute
+  PricingRoute: typeof PricingRoute
+  AdminRoute: typeof AdminRoute
+  TermsRoute: typeof TermsRoute
+  PrivacyRoute: typeof PrivacyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +237,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResultIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +283,11 @@ const rootRouteChildren: RootRouteChildren = {
   InsightsRoute: InsightsRoute,
   ProfileRoute: ProfileRoute,
   ResultIdRoute: ResultIdRoute,
+  AuthRoute: AuthRoute,
+  PricingRoute: PricingRoute,
+  AdminRoute: AdminRoute,
+  TermsRoute: TermsRoute,
+  PrivacyRoute: PrivacyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

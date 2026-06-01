@@ -72,9 +72,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ViralMind AI" },
+      { title: "ViralMind System" },
       { name: "description", content: "Análise viral de vídeos com IA em segundos." },
-      { property: "og:title", content: "ViralMind AI" },
+      { property: "og:title", content: "ViralMind System" },
       { property: "og:description", content: "Descubra por que vídeos viralizam." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

@@ -17,13 +17,13 @@ import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations';
 export const Route = createFileRoute('/')({
   head: () => ({
     meta: [
-      { title: 'ViralMind AI — Descubra por que vídeos viralizam' },
+      { title: 'ViralMind System — Descubra por que vídeos viralizam' },
       {
         name: 'description',
         content:
           'Cole o link de qualquer vídeo e a IA analisa em segundos por que viralizou — ou o que falta para viralizar.',
       },
-      { property: 'og:title', content: 'ViralMind AI' },
+      { property: 'og:title', content: 'ViralMind System' },
       {
         property: 'og:description',
         content: 'Análise viral de vídeos com IA em segundos.',
@@ -69,7 +69,7 @@ function LandingPage() {
       <header className="flex items-center justify-between px-6 py-5">
         <div className="flex items-center gap-2">
           <Zap className="h-5 w-5 text-violet-400" fill="currentColor" />
-          <span className="text-base font-bold text-violet-400">ViralMind</span>
+          <span className="text-base font-bold text-violet-400">ViralMind System</span>
         </div>
         <Link
           to="/analyze"
@@ -222,7 +222,7 @@ function LandingPage() {
       {/* Footer */}
       <footer className="mt-8 py-8 border-t border-zinc-800 text-center">
         <p className="text-sm text-zinc-600">
-          © 2026 ViralMind AI — Todos os direitos reservados
+          © 2026 ViralMind System — Todos os direitos reservados
         </p>
       </footer>
     </div>

@@ -3,7 +3,7 @@ import { AppLayout } from '@/components/layout/AppLayout';
 
 export const Route = createFileRoute('/insights')({
   head: () => ({
-    meta: [{ title: 'Insights — ViralMind AI' }],
+    meta: [{ title: 'Insights — ViralMind System' }],
   }),
   component: InsightsPage,
 });

@@ -35,7 +35,7 @@ import { getScoreColor } from '@/lib/utils';
 
 export const Route = createFileRoute('/result/$id')({
   head: () => ({
-    meta: [{ title: 'Resultado da análise — ViralMind AI' }],
+    meta: [{ title: 'Resultado da análise — ViralMind System' }],
   }),
   component: ResultPage,
 });

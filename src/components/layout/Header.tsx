@@ -1,14 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from '@tanstack/react-router';
-import { Bell, Plus } from 'lucide-react';
-import { mockUser } from '@/lib/mockData';
+import { Bell, Plus, ShieldCheck } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const { user, logout, isAdmin } = useAuth();
 
-  const initials = mockUser.username
+  const username = user?.username || 'João Silva';
+  const credits = user?.credits ?? 3;
+
+  const initials = username
     .split(' ')
     .map((n) => n[0])
     .slice(0, 2)
@@ -25,23 +29,23 @@ export function Header() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-14 z-50 bg-zinc-950/95 backdrop-blur-sm border-b border-zinc-800 flex items-center justify-between px-4">
+    <header className="fixed top-0 left-0 right-0 h-14 z-50 bg-zinc-950/95 backdrop-blur-sm border-b border-zinc-800 flex items-center justify-between px-4 text-white">
       <div className="flex items-center gap-3 lg:hidden">
         <Link to="/" className="text-sm font-bold text-white flex items-center gap-2">
           <span>⚡</span>
-          <span>ViralMind</span>
+          <span>ViralMind System</span>
         </Link>
       </div>
       <div className="hidden lg:block" />
 
       <div className="flex items-center gap-3">
-        <div className="bg-zinc-800 border border-zinc-700 text-zinc-300 text-xs rounded-full px-3 py-1">
-          {mockUser.credits} créditos
+        <div className="bg-zinc-800 border border-zinc-700 text-zinc-300 text-xs rounded-full px-3 py-1 font-mono">
+          {credits} créditos
         </div>
 
         <button
           onClick={() => navigate({ to: '/analyze' })}
-          className="hidden lg:flex bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-4 h-8 rounded-lg items-center gap-1.5 transition-colors"
+          className="hidden lg:flex bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold px-4 h-8 rounded-lg items-center gap-1.5 transition-all cursor-pointer active:scale-95"
         >
           <Plus size={14} />
           <span>Nova Análise</span>
@@ -57,37 +61,50 @@ export function Header() {
         <div ref={ref} className="relative">
           <button
             onClick={() => setOpen((o) => !o)}
-            className="w-8 h-8 rounded-full bg-violet-700 flex items-center justify-center text-xs font-bold cursor-pointer text-white transition hover:scale-105"
+            className="w-8 h-8 rounded-full bg-violet-750 flex items-center justify-center text-xs font-bold cursor-pointer text-white transition hover:scale-105"
           >
             {initials}
           </button>
           {open && (
             <div className="absolute right-0 top-10 bg-zinc-900 border border-zinc-800 rounded-xl shadow-xl p-1 w-48 z-50">
+              {isAdmin && (
+                <button
+                  onClick={() => {
+                    setOpen(false);
+                    navigate({ to: '/admin' });
+                  }}
+                  className="w-full text-left px-4 py-2.5 text-sm text-violet-300 transition hover:bg-zinc-800 rounded-lg flex items-center gap-1.5 font-medium cursor-pointer"
+                >
+                  <ShieldCheck size={14} />
+                  <span>Painel Admin</span>
+                </button>
+              )}
               <button
                 onClick={() => {
                   setOpen(false);
                   navigate({ to: '/profile' });
                 }}
-                className="block w-full text-left px-4 py-2.5 text-sm text-zinc-200 transition hover:bg-zinc-800 rounded-lg"
+                className="block w-full text-left px-4 py-2.5 text-sm text-zinc-200 transition hover:bg-zinc-800 rounded-lg font-medium cursor-pointer"
               >
                 Meu Perfil
               </button>
               <button
                 onClick={() => {
                   setOpen(false);
-                  alert('Em breve');
+                  navigate({ to: '/pricing' });
                 }}
-                className="block w-full text-left px-4 py-2.5 text-sm text-zinc-200 transition hover:bg-zinc-800 rounded-lg"
+                className="block w-full text-left px-4 py-2.5 text-sm text-cyan-300 transition hover:bg-zinc-800 rounded-lg font-medium cursor-pointer"
               >
-                Configurações
+                Preços e Planos
               </button>
               <div className="border-t border-zinc-800 my-1" />
               <button
                 onClick={() => {
                   setOpen(false);
-                  navigate({ to: '/' });
+                  logout();
+                  navigate({ to: '/auth' });
                 }}
-                className="block w-full text-left px-4 py-2.5 text-sm text-red-400 transition hover:bg-zinc-800 rounded-lg"
+                className="block w-full text-left px-4 py-2.5 text-sm text-red-400 transition hover:bg-zinc-800 rounded-lg font-medium cursor-pointer"
               >
                 Sair
               </button>
@@ -98,4 +115,4 @@ export function Header() {
     </header>
   );
 }
-
+export { Header };

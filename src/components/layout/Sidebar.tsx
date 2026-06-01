@@ -8,33 +8,43 @@ import {
   Link2,
   Search,
   Zap,
+  DollarSign,
+  ShieldCheck
 } from 'lucide-react';
-import { mockAnalysisList, mockUser } from '@/lib/mockData';
+import { mockAnalysisList } from '@/lib/mockData';
 import { getScoreColor } from '@/lib/utils';
+import { useAuth } from '@/hooks/useAuth';
 
-const nav = [
-  { to: '/', label: 'Início', icon: Home, exact: true },
-  { to: '/analyze', label: 'Nova Análise', icon: Search },
-  { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { to: '/connect', label: 'Conectar Contas', icon: Link2 },
-  { to: '/insights', label: 'IA Consultora', icon: Brain },
-];
-
-interface SidebarProps {
-  collapsed: boolean;
-  onToggle: () => void;
-}
-
-export function Sidebar({ collapsed, onToggle }: SidebarProps) {
+export function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => void }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const navigate = useNavigate();
+  const { user, isAdmin } = useAuth();
 
-  const recents = mockAnalysisList.slice(0, 3);
-  const initials = mockUser.username
+  const username = user?.username || 'João Silva';
+  const plan = user?.plan || 'free';
+
+  const initials = username
     .split(' ')
     .map((n) => n[0])
     .slice(0, 2)
     .join('');
+
+  const recents = mockAnalysisList.slice(0, 3);
+
+  // Main navigation elements
+  const nav = [
+    { to: '/', label: 'Início', icon: Home, exact: true },
+    { to: '/analyze', label: 'Nova Análise', icon: Search },
+    { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { to: '/connect', label: 'Conectar Contas', icon: Link2 },
+    { to: '/insights', label: 'IA Consultora', icon: Brain },
+    { to: '/pricing', label: 'Preços e Planos', icon: DollarSign },
+  ];
+
+  // Dynamic admin shortcut in sidebar if role allows
+  if (isAdmin) {
+    nav.push({ to: '/admin', label: 'Painel Admin', icon: ShieldCheck });
+  }
 
   return (
     <aside
@@ -46,7 +56,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
         {!collapsed && (
           <Link to="/" className="flex items-center gap-2">
             <Zap className="h-4 w-4 text-violet-500 shrink-0" fill="currentColor" />
-            <span className="text-sm font-bold text-white">ViralMind AI</span>
+            <span className="text-sm font-bold text-white">ViralMind System</span>
           </Link>
         )}
         {collapsed && (
@@ -57,7 +67,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
         <button
           onClick={onToggle}
           title={collapsed ? 'Expandir' : 'Recolher'}
-          className="absolute right-3 top-4 text-zinc-500 hover:text-zinc-200"
+          className="absolute right-3 top-4 text-zinc-500 hover:text-zinc-200 cursor-pointer"
         >
           {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
         </button>
@@ -71,7 +81,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
               key={to}
               to={to}
               title={collapsed ? label : undefined}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors cursor-pointer ${
                 active
                   ? 'bg-violet-950/50 text-violet-400 border-l-2 border-violet-500 font-medium'
                   : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50'
@@ -120,7 +130,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       <div className="mt-auto flex items-center gap-2 p-3 border-t border-zinc-800">
         <Link
           to="/profile"
-          className={`flex items-center gap-2 rounded-lg p-1 transition hover:bg-zinc-800/50 w-full ${
+          className={`flex items-center gap-2 rounded-lg p-1 transition hover:bg-zinc-800/50 w-full cursor-pointer ${
             collapsed ? 'justify-center' : ''
           }`}
         >
@@ -129,9 +139,15 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
           </div>
           {!collapsed && (
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-medium text-white truncate">{mockUser.username}</p>
-              <span className="text-xs bg-zinc-700 rounded px-1.5 py-0.5 text-zinc-400 block w-fit mt-0.5">
-                Plano {mockUser.plan === 'free' ? 'Free' : mockUser.plan}
+              <p className="text-sm font-medium text-white truncate">{username}</p>
+              <span className={`text-xs rounded px-1.5 py-0.5 block w-fit mt-0.5 border ${
+                plan === 'elite' 
+                  ? 'bg-cyan-950 text-cyan-400 border-cyan-900 font-bold' 
+                  : plan === 'pro' 
+                  ? 'bg-violet-950 text-violet-400 border-violet-900 font-bold' 
+                  : 'bg-zinc-850 text-zinc-400 border-zinc-700'
+              }`}>
+                Plano {plan.charAt(0).toUpperCase() + plan.slice(1)}
               </span>
             </div>
           )}
@@ -140,4 +156,4 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
     </aside>
   );
 }
-
+export { Sidebar };
