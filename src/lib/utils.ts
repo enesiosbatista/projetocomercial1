@@ -22,14 +22,14 @@ export function formatRelativeTime(isoString: string): string {
 }
 
 export function getScoreColor(score: number): string {
-  if (score >= 85) return 'text-violet-400';
+  if (score >= 85) return 'text-blue-400';
   if (score >= 70) return 'text-green-400';
   if (score >= 40) return 'text-amber-400';
   return 'text-red-400';
 }
 
 export function getScoreStroke(score: number): string {
-  if (score >= 85) return '#7C3AED';
+  if (score >= 85) return '#3B82F6';
   if (score >= 70) return '#22C55E';
   if (score >= 40) return '#F59E0B';
   return '#EF4444';

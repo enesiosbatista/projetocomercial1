@@ -1,8 +1,8 @@
-import { Link, useRouterState } from '@tanstack/react-router';
+﻿import { Link, useRouterState } from '@tanstack/react-router';
 import { Brain, Home, LayoutDashboard, Search } from 'lucide-react';
 
 const items: { to: string; label: string; icon: typeof Home; exact?: boolean }[] = [
-  { to: '/', label: 'Início', icon: Home, exact: true },
+  { to: '/', label: 'InÃ­cio', icon: Home, exact: true },
   { to: '/analyze', label: 'Analisar', icon: Search },
   { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { to: '/insights', label: 'IA', icon: Brain },
@@ -19,7 +19,7 @@ export function BottomNav() {
             key={to}
             to={to}
             className={`flex flex-col items-center gap-0.5 px-3 py-2 transition-colors ${
-              active ? 'text-violet-400' : 'text-zinc-500'
+              active ? 'text-blue-400' : 'text-zinc-500'
             }`}
           >
             <Icon className="h-5 w-5" />
@@ -30,3 +30,4 @@ export function BottomNav() {
     </nav>
   );
 }
+

@@ -64,10 +64,10 @@
   --popover: #18181B;
   --popover-foreground: #FAFAFA;
 
-  --primary: #7C3AED;
+  --primary: #3B82F6;
   --primary-foreground: #FAFAFA;
 
-  --secondary: #06B6D4;
+  --secondary: #38BDF8;
   --secondary-foreground: #09090B;
 
   --accent: #F59E0B;
@@ -83,16 +83,16 @@
 
   --border: #3F3F46;
   --input: #27272A;
-  --ring: #7C3AED;
+  --ring: #3B82F6;
 
   --sidebar: #18181B;
   --sidebar-foreground: #FAFAFA;
-  --sidebar-primary: #7C3AED;
+  --sidebar-primary: #3B82F6;
   --sidebar-primary-foreground: #FAFAFA;
   --sidebar-accent: #27272A;
   --sidebar-accent-foreground: #FAFAFA;
   --sidebar-border: #3F3F46;
-  --sidebar-ring: #7C3AED;
+  --sidebar-ring: #3B82F6;
 }
 
 @layer base {
@@ -122,7 +122,7 @@
 
 @layer utilities {
   .text-gradient-viral {
-    background: linear-gradient(90deg, #8B5CF6 0%, #22D3EE 100%);
+    background: linear-gradient(90deg, #3B82F6 0%, #38BDF8 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

@@ -1,4 +1,4 @@
-import { AlertTriangle, CheckCircle, Info, X } from 'lucide-react';
+﻿import { AlertTriangle, CheckCircle, Info, X } from 'lucide-react';
 
 interface Props {
   message: string;
@@ -12,7 +12,7 @@ const styles = {
     icon: AlertTriangle,
   },
   info: {
-    cls: 'bg-cyan-950/40 border-cyan-800 text-cyan-300',
+    cls: 'bg-sky-950/40 border-sky-800 text-sky-300',
     icon: Info,
   },
   success: {
@@ -39,3 +39,4 @@ export function AlertBanner({ message, type, onDismiss }: Props) {
     </div>
   );
 }
+

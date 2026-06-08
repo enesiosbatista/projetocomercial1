@@ -1,14 +1,14 @@
-interface Props {
+﻿interface Props {
   emoji: string;
   title: string;
   text: string;
-  color: 'amber' | 'violet' | 'cyan';
+  color: 'amber' | 'blue' | 'sky';
 }
 
 const colorMap = {
   amber: 'border-amber-500 bg-amber-950/20',
-  violet: 'border-violet-500 bg-violet-950/20',
-  cyan: 'border-cyan-500 bg-cyan-950/20',
+  blue: 'border-blue-500 bg-blue-950/20',
+  sky: 'border-sky-500 bg-sky-950/20',
 };
 
 export function ScriptSection({ emoji, title, text, color }: Props) {
@@ -25,3 +25,4 @@ export function ScriptSection({ emoji, title, text, color }: Props) {
     </div>
   );
 }
+

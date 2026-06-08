@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Brain, Sparkles, TrendingUp, CheckCircle, ArrowRight, X } from 'lucide-react';
 import { scaleIn } from '@/lib/animations';
@@ -31,39 +31,39 @@ export function OnboardingModal() {
 
   const steps = [
     {
-      title: 'Bem-vindo ao ViralMind System ⚡',
-      desc: 'Sua jornada para entender por que vídeos viralizam e replicar esse sucesso começa agora.',
+      title: 'Bem-vindo ao ViralMind System âš¡',
+      desc: 'Sua jornada para entender por que vÃ­deos viralizam e replicar esse sucesso comeÃ§a agora.',
       icon: Brain,
-      color: 'text-violet-400',
-      bgGlow: 'bg-violet-600/10',
+      color: 'text-blue-400',
+      bgGlow: 'bg-blue-600/10',
       bullets: [
-        'Análises neurais profundas de retenção de público.',
-        'Detecção automática de gatilhos mentais e ganchos (hooks).',
-        'Geração de roteiros alternativos com 0% risco de plágio.',
+        'AnÃ¡lises neurais profundas de retenÃ§Ã£o de pÃºblico.',
+        'DetecÃ§Ã£o automÃ¡tica de gatilhos mentais e ganchos (hooks).',
+        'GeraÃ§Ã£o de roteiros alternativos com 0% risco de plÃ¡gio.',
       ],
     },
     {
-      title: 'Como Funciona o Sistema? 📊',
-      desc: 'Em apenas 3 passos simples, você otimiza todo o seu conteúdo e escala suas redes sociais.',
+      title: 'Como Funciona o Sistema? ðŸ“Š',
+      desc: 'Em apenas 3 passos simples, vocÃª otimiza todo o seu conteÃºdo e escala suas redes sociais.',
       icon: TrendingUp,
-      color: 'text-cyan-400',
-      bgGlow: 'bg-cyan-500/10',
+      color: 'text-sky-400',
+      bgGlow: 'bg-sky-500/10',
       bullets: [
-        '1. Cole o link de qualquer vídeo de rede social.',
-        '2. Receba um Score de Viralização exclusivo de 0 a 100.',
-        '3. Remodele a transcrição com IA em mais de 6 estilos diferentes.',
+        '1. Cole o link de qualquer vÃ­deo de rede social.',
+        '2. Receba um Score de ViralizaÃ§Ã£o exclusivo de 0 a 100.',
+        '3. Remodele a transcriÃ§Ã£o com IA em mais de 6 estilos diferentes.',
       ],
     },
     {
-      title: 'Créditos e Crescimento 🚀',
-      desc: 'No plano Free, você inicia com 3 créditos. Cada análise detalhada consome apenas 1 crédito.',
+      title: 'CrÃ©ditos e Crescimento ðŸš€',
+      desc: 'No plano Free, vocÃª inicia com 3 crÃ©ditos. Cada anÃ¡lise detalhada consome apenas 1 crÃ©dito.',
       icon: Sparkles,
       color: 'text-amber-400',
       bgGlow: 'bg-amber-500/10',
       bullets: [
         'Acompanhe seu progresso de engajamento no Dashboard.',
         'Conecte suas contas para ter dados de postagem otimizados.',
-        'Acesse nossa IA Consultora na aba de Insights Estratégicos.',
+        'Acesse nossa IA Consultora na aba de Insights EstratÃ©gicos.',
       ],
     },
   ];
@@ -100,7 +100,7 @@ export function OnboardingModal() {
               <div
                 key={idx}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === step ? 'w-8 bg-violet-500' : 'w-2 bg-zinc-800'
+                  idx === step ? 'w-8 bg-blue-500' : 'w-2 bg-zinc-800'
                 }`}
               />
             ))}
@@ -128,7 +128,7 @@ export function OnboardingModal() {
             <ul className="space-y-3">
               {current.bullets.map((bullet, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-xs leading-relaxed text-zinc-300">
-                  <CheckCircle size={14} className="text-violet-400 shrink-0 mt-0.5" />
+                  <CheckCircle size={14} className="text-blue-400 shrink-0 mt-0.5" />
                   <span>{bullet}</span>
                 </li>
               ))}
@@ -141,23 +141,23 @@ export function OnboardingModal() {
               onClick={handleClose}
               className="text-sm font-medium text-zinc-500 hover:text-zinc-300 transition-colors cursor-pointer"
             >
-              Pular Introdução
+              Pular IntroduÃ§Ã£o
             </button>
 
             {step < steps.length - 1 ? (
               <button
                 onClick={() => setStep((s) => s + 1)}
-                className="h-10 px-5 bg-violet-600 hover:bg-violet-500 active:scale-95 text-white font-semibold rounded-xl text-xs flex items-center gap-1.5 transition-all cursor-pointer"
+                className="h-10 px-5 bg-blue-600 hover:bg-blue-500 active:scale-95 text-white font-semibold rounded-xl text-xs flex items-center gap-1.5 transition-all cursor-pointer"
               >
-                <span>Próximo Passo</span>
+                <span>PrÃ³ximo Passo</span>
                 <ArrowRight size={14} />
               </button>
             ) : (
               <button
                 onClick={handleClose}
-                className="h-10 px-6 bg-gradient-to-r from-violet-500 to-cyan-500 hover:opacity-90 active:scale-95 text-zinc-950 font-bold rounded-xl text-xs flex items-center gap-1.5 transition-all cursor-pointer"
+                className="h-10 px-6 bg-gradient-to-r from-blue-500 to-sky-500 hover:opacity-90 active:scale-95 text-zinc-950 font-bold rounded-xl text-xs flex items-center gap-1.5 transition-all cursor-pointer"
               >
-                <span>Começar Agora!</span>
+                <span>ComeÃ§ar Agora!</span>
                 <Zap size={14} fill="currentColor" />
               </button>
             )}
@@ -167,3 +167,4 @@ export function OnboardingModal() {
     </AnimatePresence>
   );
 }
+

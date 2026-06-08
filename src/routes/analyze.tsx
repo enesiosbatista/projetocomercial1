@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
+﻿import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Brain, ShieldAlert } from 'lucide-react';
@@ -9,20 +9,20 @@ import { useAuth } from '@/hooks/useAuth';
 export const Route = createFileRoute('/analyze')({
   head: () => ({
     meta: [
-      { title: 'Analisando vídeo — ViralMind System' },
-      { name: 'description', content: 'A IA está analisando seu vídeo.' },
+      { title: 'Analisando vÃ­deo â€” ViralMind System' },
+      { name: 'description', content: 'A IA estÃ¡ analisando seu vÃ­deo.' },
     ],
   }),
   component: AnalyzePage,
 });
 
 const steps = [
-  '🔍 Identificando plataforma e vídeo...',
-  '📥 Extraindo metadados do vídeo...',
-  '🧠 IA analisando estrutura e emoções...',
-  '📊 Calculando Score de Viralização...',
-  '✍️ Gerando relatório personalizado...',
-  '✅ Análise concluída! Redirecionando...',
+  'ðŸ” Identificando plataforma e vÃ­deo...',
+  'ðŸ“¥ Extraindo metadados do vÃ­deo...',
+  'ðŸ§  IA analisando estrutura e emoÃ§Ãµes...',
+  'ðŸ“Š Calculando Score de ViralizaÃ§Ã£o...',
+  'âœï¸ Gerando relatÃ³rio personalizado...',
+  'âœ… AnÃ¡lise concluÃ­da! Redirecionando...',
 ];
 
 const timings = [0, 2500, 6000, 12000, 20000, 27000];
@@ -84,16 +84,16 @@ function AnalyzePage() {
           <div className="inline-flex p-3 bg-red-950/40 border border-red-800 rounded-xl mb-4">
             <ShieldAlert className="w-12 h-12 text-red-400" />
           </div>
-          <h1 className="text-2xl font-bold">Créditos Esgotados! ⚠️</h1>
+          <h1 className="text-2xl font-bold">CrÃ©ditos Esgotados! âš ï¸</h1>
           <p className="text-sm text-zinc-400 mt-3 leading-relaxed">
-            Você utilizou todos os seus créditos gratuitos. Para continuar fazendo análises neurais de vídeo e gerando roteiros com IA, faça o upgrade para o plano Pro.
+            VocÃª utilizou todos os seus crÃ©ditos gratuitos. Para continuar fazendo anÃ¡lises neurais de vÃ­deo e gerando roteiros com IA, faÃ§a o upgrade para o plano Pro.
           </p>
           <div className="mt-8 flex flex-col gap-3">
             <button
               onClick={() => navigate({ to: '/pricing' })}
-              className="h-11 bg-violet-600 hover:bg-violet-500 active:scale-95 text-white font-semibold rounded-xl text-sm transition-all cursor-pointer shadow-lg shadow-violet-950/30"
+              className="h-11 bg-blue-600 hover:bg-blue-500 active:scale-95 text-white font-semibold rounded-xl text-sm transition-all cursor-pointer shadow-lg shadow-blue-950/30"
             >
-              🚀 Ver Planos & Fazer Upgrade
+              ðŸš€ Ver Planos & Fazer Upgrade
             </button>
             <button
               onClick={() => navigate({ to: '/dashboard' })}
@@ -115,12 +115,12 @@ function AnalyzePage() {
           transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
           className="inline-flex"
         >
-          <Brain className="w-16 h-16 text-violet-500" />
+          <Brain className="w-16 h-16 text-blue-500" />
         </motion.div>
 
-        <h1 className="text-2xl font-bold mt-6">Analisando seu vídeo...</h1>
+        <h1 className="text-2xl font-bold mt-6">Analisando seu vÃ­deo...</h1>
         <p className="text-sm text-zinc-500 mt-1 truncate max-w-full">
-          {url || 'link não encontrado'}
+          {url || 'link nÃ£o encontrado'}
         </p>
 
         <div className="mt-8">
@@ -133,7 +133,7 @@ function AnalyzePage() {
         <div className="mt-8">
           <div className="w-full h-2 bg-zinc-800 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-violet-600 rounded-full"
+              className="h-full bg-blue-600 rounded-full"
               animate={{ width: progress + '%' }}
               transition={{ duration: 0.5 }}
             />
@@ -147,3 +147,4 @@ function AnalyzePage() {
   );
 }
 export { AnalyzePage };
+

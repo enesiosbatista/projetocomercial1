@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 import { Eye, Star, Trash2 } from 'lucide-react';
@@ -23,9 +23,9 @@ function relativeTime(iso: string) {
   const diff = Date.now() - new Date(iso).getTime();
   const h = Math.floor(diff / 3600000);
   if (h < 1) return 'agora mesmo';
-  if (h < 24) return `há ${h}h`;
+  if (h < 24) return `hÃ¡ ${h}h`;
   const d = Math.floor(h / 24);
-  return `há ${d}d`;
+  return `hÃ¡ ${d}d`;
 }
 
 export function AnalysisCard({
@@ -43,7 +43,7 @@ export function AnalysisCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.04 }}
       whileHover={{ y: -2 }}
-      className="group overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 transition-colors hover:border-violet-500/50"
+      className="group overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 transition-colors hover:border-blue-500/50"
     >
       <div className="relative aspect-video w-full overflow-hidden bg-zinc-800">
         {!imgError ? (
@@ -55,7 +55,7 @@ export function AnalysisCard({
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-zinc-600">▶</div>
+          <div className="flex h-full w-full items-center justify-center text-zinc-600">â–¶</div>
         )}
         <div className="absolute right-2 top-2">
           <PlatformBadge platform={analysis.platform} />
@@ -69,7 +69,7 @@ export function AnalysisCard({
         <h3 className="line-clamp-2 text-sm font-semibold text-white">{analysis.title}</h3>
         <div className="mt-1 flex items-center gap-2 text-xs text-zinc-500">
           <span>{formatDuration(analysis.duration_seconds)}</span>
-          <span>•</span>
+          <span>â€¢</span>
           <span>{relativeTime(analysis.created_at)}</span>
         </div>
 
@@ -77,8 +77,8 @@ export function AnalysisCard({
           <Link
             to="/result/$id"
             params={{ id: analysis.id }}
-            title="Ver análise"
-            className="rounded-md p-2 text-zinc-400 transition hover:bg-zinc-800 hover:text-violet-300"
+            title="Ver anÃ¡lise"
+            className="rounded-md p-2 text-zinc-400 transition hover:bg-zinc-800 hover:text-blue-300"
           >
             <Eye size={16} />
           </Link>
@@ -105,3 +105,4 @@ export function AnalysisCard({
     </motion.article>
   );
 }
+

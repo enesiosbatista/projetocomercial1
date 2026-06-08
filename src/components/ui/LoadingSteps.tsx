@@ -1,4 +1,4 @@
-import { CheckCircle, Circle, Loader2 } from 'lucide-react';
+﻿import { CheckCircle, Circle, Loader2 } from 'lucide-react';
 
 interface Props {
   steps: string[];
@@ -24,7 +24,7 @@ export function LoadingSteps({ steps, currentStep }: Props) {
         if (isActive) {
           return (
             <li key={i} className="flex items-center gap-3 text-white">
-              <Loader2 className="text-violet-400 w-4 h-4 animate-spin shrink-0" />
+              <Loader2 className="text-blue-400 w-4 h-4 animate-spin shrink-0" />
               <span className="text-sm font-medium">{step}</span>
             </li>
           );
@@ -41,4 +41,5 @@ export function LoadingSteps({ steps, currentStep }: Props) {
     </ul>
   );
 }
+
 

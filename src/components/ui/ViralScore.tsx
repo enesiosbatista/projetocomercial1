@@ -15,7 +15,7 @@ function getScoreDetails(score: number) {
   if (score < 40) return { strokeColor: '#EF4444', scoreColorClass: 'text-red-500' };
   if (score < 70) return { strokeColor: '#F59E0B', scoreColorClass: 'text-amber-500' };
   if (score < 85) return { strokeColor: '#22C55E', scoreColorClass: 'text-green-500' };
-  return { strokeColor: '#7C3AED', scoreColorClass: 'text-violet-500' };
+  return { strokeColor: '#3B82F6', scoreColorClass: 'text-blue-500' };
 }
 
 export function ViralScore({ score, size = 'md' }: Props) {

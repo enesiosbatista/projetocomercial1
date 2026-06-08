@@ -1,9 +1,9 @@
-import type { TranscriptLine as TLine } from '@/types/database';
+﻿import type { TranscriptLine as TLine } from '@/types/database';
 
 const styleMap: Record<TLine['type'], string> = {
   hook: 'bg-amber-950/40 border-l-2 border-amber-500',
-  cta: 'bg-cyan-950/40 border-l-2 border-cyan-500',
-  highlight: 'bg-violet-950/40 border-l-2 border-violet-500',
+  cta: 'bg-sky-950/40 border-l-2 border-sky-500',
+  highlight: 'bg-blue-950/40 border-l-2 border-blue-500',
   normal: 'border-l-2 border-transparent',
 };
 
@@ -17,3 +17,4 @@ export function TranscriptLine({ line }: { line: TLine }) {
     </div>
   );
 }
+

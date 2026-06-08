@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
+﻿import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
@@ -35,7 +35,7 @@ import { getScoreColor } from '@/lib/utils';
 
 export const Route = createFileRoute('/result/$id')({
   head: () => ({
-    meta: [{ title: 'Resultado da análise — ViralMind System' }],
+    meta: [{ title: 'Resultado da anÃ¡lise â€” ViralMind System' }],
   }),
   component: ResultPage,
 });
@@ -65,7 +65,7 @@ function ResultPage() {
     const tick = (now: number) => {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
-      // Easing out cúbico
+      // Easing out cÃºbico
       const easedProgress = 1 - Math.pow(1 - progress, 3);
       setDisplayScore(Math.round(easedProgress * target));
 
@@ -81,7 +81,7 @@ function ResultPage() {
   return (
     <AppLayout>
       <div className="lg:flex gap-6 p-6 max-w-7xl mx-auto text-white">
-        {/* Coluna Esquerda — Info Card */}
+        {/* Coluna Esquerda â€” Info Card */}
         <aside className="w-full lg:w-[320px] shrink-0 lg:sticky lg:top-[72px] lg:h-fit">
           <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
             {/* Thumbnail */}
@@ -100,7 +100,7 @@ function ResultPage() {
               )}
             </div>
 
-            {/* Título */}
+            {/* TÃ­tulo */}
             <h2 className="text-sm font-semibold mt-3 line-clamp-2 text-zinc-100">
               {analysis.title}
             </h2>
@@ -124,37 +124,37 @@ function ResultPage() {
             {/* Veredicto */}
             <div className="text-center font-semibold mt-2">
               {analysis.viral_score >= 70 ? (
-                <span className="text-green-400 text-sm">✅ Viralizou!</span>
+                <span className="text-green-400 text-sm">âœ… Viralizou!</span>
               ) : (
-                <span className="text-amber-400 text-sm">⚠️ Não viralizou</span>
+                <span className="text-amber-400 text-sm">âš ï¸ NÃ£o viralizou</span>
               )}
             </div>
 
-            {/* Botões */}
+            {/* BotÃµes */}
             <div className="flex flex-col gap-2 mt-4">
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href);
-                  alert('Link de análise copiado para a área de transferência!');
+                  alert('Link de anÃ¡lise copiado para a Ã¡rea de transferÃªncia!');
                 }}
                 className="bg-zinc-800 hover:bg-zinc-700 w-full rounded-xl h-9 text-sm text-zinc-300 transition-colors flex items-center justify-center gap-2 font-medium"
               >
                 <Share2 size={14} />
-                <span>📋 Compartilhar Análise</span>
+                <span>ðŸ“‹ Compartilhar AnÃ¡lise</span>
               </button>
 
               <button
                 onClick={() => window.print()}
-                className="bg-violet-600 hover:bg-violet-500 w-full rounded-xl h-9 text-sm text-white transition-colors flex items-center justify-center gap-2 font-medium"
+                className="bg-blue-600 hover:bg-blue-500 w-full rounded-xl h-9 text-sm text-white transition-colors flex items-center justify-center gap-2 font-medium"
               >
                 <Download size={14} />
-                <span>📥 Exportar PDF</span>
+                <span>ðŸ“¥ Exportar PDF</span>
               </button>
             </div>
           </div>
         </aside>
 
-        {/* Coluna Direita — Sistema de Abas */}
+        {/* Coluna Direita â€” Sistema de Abas */}
         <section className="flex-1 min-w-0 mt-6 lg:mt-0">
           {/* TabBar */}
           <div className="flex border-b border-zinc-800 mb-6 gap-1 overflow-x-auto">
@@ -162,35 +162,35 @@ function ResultPage() {
               onClick={() => setActiveTab('analysis')}
               className={`${
                 activeTab === 'analysis'
-                  ? 'border-b-2 border-violet-500 text-white pb-3 px-4 text-sm font-medium -mb-px'
+                  ? 'border-b-2 border-blue-500 text-white pb-3 px-4 text-sm font-medium -mb-px'
                   : 'text-zinc-400 hover:text-zinc-200 pb-3 px-4 text-sm transition-colors -mb-px'
               }`}
             >
-              Análise Completa
+              AnÃ¡lise Completa
             </button>
             <button
               onClick={() => setActiveTab('recreate')}
               className={`${
                 activeTab === 'recreate'
-                  ? 'border-b-2 border-violet-500 text-white pb-3 px-4 text-sm font-medium -mb-px'
+                  ? 'border-b-2 border-blue-500 text-white pb-3 px-4 text-sm font-medium -mb-px'
                   : 'text-zinc-400 hover:text-zinc-200 pb-3 px-4 text-sm transition-colors -mb-px'
               }`}
             >
-              Recriar Vídeo
+              Recriar VÃ­deo
             </button>
             <button
               onClick={() => setActiveTab('transcript')}
               className={`${
                 activeTab === 'transcript'
-                  ? 'border-b-2 border-violet-500 text-white pb-3 px-4 text-sm font-medium -mb-px'
+                  ? 'border-b-2 border-blue-500 text-white pb-3 px-4 text-sm font-medium -mb-px'
                   : 'text-zinc-400 hover:text-zinc-200 pb-3 px-4 text-sm transition-colors -mb-px'
               }`}
             >
-              Transcrição
+              TranscriÃ§Ã£o
             </button>
           </div>
 
-          {/* Conteúdo das Abas */}
+          {/* ConteÃºdo das Abas */}
           {activeTab === 'analysis' && (
             <AnalysisTab analysis={analysis} verdict={verdict} />
           )}
@@ -208,7 +208,7 @@ function ResultPage() {
   );
 }
 
-/* ─────────────── ABA 1: ANALYSIS TAB ─────────────── */
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ ABA 1: ANALYSIS TAB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 interface AnalysisTabProps {
   analysis: Analysis;
@@ -219,7 +219,7 @@ function AnalysisTab({ analysis, verdict }: AnalysisTabProps) {
   const r = analysis.result;
   const isViralized = verdict === 'viralized';
 
-  // Acordeões controlado
+  // AcordeÃµes controlado
   const [openStrong, setOpenStrong] = useState<number | null>(null);
   const [openWeak, setOpenWeak] = useState<number | null>(null);
 
@@ -243,11 +243,11 @@ function AnalysisTab({ analysis, verdict }: AnalysisTabProps) {
       >
         {isViralized ? (
           <h3 className="text-green-400 font-semibold text-sm">
-            ✅ Este vídeo viralizou — entenda o porquê
+            âœ… Este vÃ­deo viralizou â€” entenda o porquÃª
           </h3>
         ) : (
           <h3 className="text-amber-400 font-semibold text-sm">
-            ⚠️ Este vídeo não viralizou — veja o que melhorar
+            âš ï¸ Este vÃ­deo nÃ£o viralizou â€” veja o que melhorar
           </h3>
         )}
 
@@ -266,19 +266,19 @@ function AnalysisTab({ analysis, verdict }: AnalysisTabProps) {
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
           <MetricCard label="Hook Score" value={r.metrics.hook_score} icon={Zap} />
-          <MetricCard label="Retenção Est." value={r.metrics.retention_estimated} icon={TrendingUp} />
+          <MetricCard label="RetenÃ§Ã£o Est." value={r.metrics.retention_estimated} icon={TrendingUp} />
           <MetricCard label="Compartilhamento" value={r.metrics.share_potential} icon={Share2} />
-          <MetricCard label="Qualidade Áudio" value={r.metrics.audio_quality} icon={Volume2} />
-          <MetricCard label="Força do CTA" value={r.metrics.cta_strength} icon={MousePointerClick} />
-          <MetricCard label="Título Otimizado" value={r.metrics.title_optimization} icon={Type} />
+          <MetricCard label="Qualidade Ãudio" value={r.metrics.audio_quality} icon={Volume2} />
+          <MetricCard label="ForÃ§a do CTA" value={r.metrics.cta_strength} icon={MousePointerClick} />
+          <MetricCard label="TÃ­tulo Otimizado" value={r.metrics.title_optimization} icon={Type} />
         </div>
       </div>
 
-      {/* Curva de Retenção */}
+      {/* Curva de RetenÃ§Ã£o */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-3">
           <h4 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-            CURVA DE RETENÇÃO
+            CURVA DE RETENÃ‡ÃƒO
           </h4>
           <span className="bg-zinc-800 text-zinc-400 text-xs px-2 py-0.5 rounded">
             Estimada pela IA
@@ -293,14 +293,14 @@ function AnalysisTab({ analysis, verdict }: AnalysisTabProps) {
       {/* Pontos Fortes e Fracos */}
       <div>
         <h4 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">
-          ANÁLISE DETALHADA
+          ANÃLISE DETALHADA
         </h4>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {/* Fortes */}
           <div>
             <h5 className="text-green-400 text-xs font-semibold uppercase mb-2">
-              ✅ Pontos Fortes
+              âœ… Pontos Fortes
             </h5>
             {r.strong_points.map((pt, idx) => {
               const isOpen = openStrong === idx;
@@ -327,7 +327,7 @@ function AnalysisTab({ analysis, verdict }: AnalysisTabProps) {
           {/* Fracos */}
           <div>
             <h5 className="text-red-400 text-xs font-semibold uppercase mb-2">
-              ⚠️ Pontos de Melhoria
+              âš ï¸ Pontos de Melhoria
             </h5>
             {r.weak_points.map((pt, idx) => {
               const isOpen = openWeak === idx;
@@ -345,7 +345,7 @@ function AnalysisTab({ analysis, verdict }: AnalysisTabProps) {
                     <div className="mt-2 text-xs text-zinc-400 leading-relaxed">
                       <p>{pt.description}</p>
                       <p className="text-amber-300 text-xs mt-1 font-semibold">
-                        💡 Sugestão: {pt.suggestion}
+                        ðŸ’¡ SugestÃ£o: {pt.suggestion}
                       </p>
                     </div>
                   )}
@@ -367,10 +367,10 @@ function AnalysisTab({ analysis, verdict }: AnalysisTabProps) {
             {r.mental_triggers.map((trigger, idx) => (
               <div
                 key={idx}
-                className="bg-violet-950/30 border border-violet-800 rounded-xl p-4 flex flex-col justify-between"
+                className="bg-blue-950/30 border border-blue-800 rounded-xl p-4 flex flex-col justify-between"
               >
                 <div>
-                  <span className="font-bold text-violet-300 text-sm block">
+                  <span className="font-bold text-blue-300 text-sm block">
                     {trigger.name}
                   </span>
                   <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
@@ -419,11 +419,11 @@ function AnalysisTab({ analysis, verdict }: AnalysisTabProps) {
             </div>
           )}
 
-          {/* Título sugerido */}
+          {/* TÃ­tulo sugerido */}
           {r.new_title_suggestion && (
             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 mb-3">
               <span className="text-xs text-zinc-500 uppercase tracking-wider font-mono">
-                Sugestão de Título
+                SugestÃ£o de TÃ­tulo
               </span>
               <p className="text-sm text-zinc-500 line-through mt-1">
                 {analysis.title}
@@ -431,17 +431,17 @@ function AnalysisTab({ analysis, verdict }: AnalysisTabProps) {
               <p className="text-base font-bold text-white mt-0.5">
                 {r.new_title_suggestion}
               </p>
-              <span className="bg-violet-950/50 text-violet-300 border border-violet-800 text-xs px-2 py-0.5 rounded-full inline-block mt-2 font-mono font-medium">
+              <span className="bg-blue-950/50 text-blue-300 border border-blue-800 text-xs px-2 py-0.5 rounded-full inline-block mt-2 font-mono font-medium">
                 Score estimado: 96
               </span>
             </div>
           )}
 
-          {/* Horários */}
+          {/* HorÃ¡rios */}
           {r.best_posting_times && (
             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 mb-3">
               <span className="text-xs text-zinc-500 uppercase tracking-wider block mb-2 font-mono">
-                Melhores Horários para Postagem
+                Melhores HorÃ¡rios para Postagem
               </span>
               <table className="w-full text-sm mt-3 mb-3">
                 <tbody>
@@ -458,10 +458,10 @@ function AnalysisTab({ analysis, verdict }: AnalysisTabProps) {
 
           {/* CTA sugerido */}
           {r.cta_suggestion && (
-            <div className="bg-cyan-950/20 border border-cyan-800 rounded-xl p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+            <div className="bg-sky-950/20 border border-sky-800 rounded-xl p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
               <div className="flex-1">
-                <span className="text-xs text-cyan-400 font-semibold uppercase font-mono block">
-                  Chamada para Ação Recomendada (CTA)
+                <span className="text-xs text-sky-400 font-semibold uppercase font-mono block">
+                  Chamada para AÃ§Ã£o Recomendada (CTA)
                 </span>
                 <p className="text-sm text-zinc-200 mt-1">{r.cta_suggestion}</p>
               </div>
@@ -470,7 +470,7 @@ function AnalysisTab({ analysis, verdict }: AnalysisTabProps) {
                   navigator.clipboard.writeText(r.cta_suggestion || '');
                   alert('CTA copiado!');
                 }}
-                className="bg-cyan-900/50 hover:bg-cyan-850/50 text-cyan-300 text-xs px-3 py-1.5 rounded-lg shrink-0 transition-colors"
+                className="bg-sky-900/50 hover:bg-sky-850/50 text-sky-300 text-xs px-3 py-1.5 rounded-lg shrink-0 transition-colors"
               >
                 Copiar CTA
               </button>
@@ -482,7 +482,7 @@ function AnalysisTab({ analysis, verdict }: AnalysisTabProps) {
   );
 }
 
-/* ─────────────── ABA 2: RECREATE TAB ─────────────── */
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ ABA 2: RECREATE TAB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 interface RecreateTabProps {
   script: {
@@ -498,8 +498,8 @@ function RecreateTab({ script }: RecreateTabProps) {
 
   const loadingMessages = [
     'Analisando conceito original...',
-    'Criando estrutura única...',
-    'Calculando risco de plágio...',
+    'Criando estrutura Ãºnica...',
+    'Calculando risco de plÃ¡gio...',
   ];
 
   const handleGenerate = () => {
@@ -530,16 +530,16 @@ function RecreateTab({ script }: RecreateTabProps) {
           <Clapperboard className="w-12 h-12 text-zinc-600 mx-auto" />
         </motion.div>
         <h3 className="text-xl font-bold mt-5 text-zinc-100">
-          Gerar roteiro original inspirado neste vídeo
+          Gerar roteiro original inspirado neste vÃ­deo
         </h3>
         <p className="text-sm text-zinc-400 mt-2 max-w-sm mx-auto">
-          A IA cria um novo roteiro com a mesma essência, sem risco de plágio
+          A IA cria um novo roteiro com a mesma essÃªncia, sem risco de plÃ¡gio
         </p>
         <button
           onClick={handleGenerate}
-          className="bg-violet-600 hover:bg-violet-500 px-8 h-12 rounded-xl mt-6 text-sm font-semibold text-white transition-colors"
+          className="bg-blue-600 hover:bg-blue-500 px-8 h-12 rounded-xl mt-6 text-sm font-semibold text-white transition-colors"
         >
-          🎬 Gerar Roteiro Agora
+          ðŸŽ¬ Gerar Roteiro Agora
         </button>
       </div>
     );
@@ -548,7 +548,7 @@ function RecreateTab({ script }: RecreateTabProps) {
   if (scriptState === 'loading') {
     return (
       <div className="text-center py-16">
-        <Loader2 className="w-8 h-8 text-violet-400 animate-spin mx-auto" />
+        <Loader2 className="w-8 h-8 text-blue-400 animate-spin mx-auto" />
         <p className="text-sm text-zinc-400 mt-4 font-medium transition-all">
           {loadingMessages[msgIndex]}
         </p>
@@ -580,9 +580,9 @@ function RecreateTab({ script }: RecreateTabProps) {
       {/* Badges topo */}
       <div className="flex gap-3 mb-5">
         <span className="bg-green-900/50 text-green-300 border border-green-800 text-sm px-3 py-1 rounded-full font-medium">
-          Risco de Plágio: 4%
+          Risco de PlÃ¡gio: 4%
         </span>
-        <span className="bg-violet-900/50 text-violet-300 border border-violet-800 text-sm px-3 py-1 rounded-full font-medium">
+        <span className="bg-blue-900/50 text-blue-300 border border-blue-800 text-sm px-3 py-1 rounded-full font-medium">
           Potencial: 89%
         </span>
       </div>
@@ -590,7 +590,7 @@ function RecreateTab({ script }: RecreateTabProps) {
       {/* Hook Section */}
       <div className="border-l-4 border-amber-500 bg-amber-950/20 rounded-xl p-4 mb-3">
         <h4 className="text-amber-400 text-xs font-semibold uppercase mb-2 font-mono">
-          🪝 Hook de Abertura (0–5s)
+          ðŸª Hook de Abertura (0â€“5s)
         </h4>
         <p className="text-sm text-zinc-200 leading-relaxed">
           {script.hook}
@@ -598,9 +598,9 @@ function RecreateTab({ script }: RecreateTabProps) {
       </div>
 
       {/* Desenvolvimento */}
-      <div className="border-l-4 border-violet-500 bg-violet-950/20 rounded-xl p-4 mb-3">
-        <h4 className="text-violet-400 text-xs font-semibold uppercase mb-2 font-mono">
-          📝 Desenvolvimento
+      <div className="border-l-4 border-blue-500 bg-blue-950/20 rounded-xl p-4 mb-3">
+        <h4 className="text-blue-400 text-xs font-semibold uppercase mb-2 font-mono">
+          ðŸ“ Desenvolvimento
         </h4>
         <div className="text-sm text-zinc-200 leading-relaxed space-y-2">
           {script.body.split('\n').map((para, i) => (
@@ -610,16 +610,16 @@ function RecreateTab({ script }: RecreateTabProps) {
       </div>
 
       {/* CTA Final */}
-      <div className="border-l-4 border-cyan-500 bg-cyan-950/20 rounded-xl p-4 mb-3">
-        <h4 className="text-cyan-400 text-xs font-semibold uppercase mb-2 font-mono">
-          🎯 CTA Final
+      <div className="border-l-4 border-sky-500 bg-sky-950/20 rounded-xl p-4 mb-3">
+        <h4 className="text-sky-400 text-xs font-semibold uppercase mb-2 font-mono">
+          ðŸŽ¯ CTA Final
         </h4>
         <p className="text-sm text-zinc-200 leading-relaxed">
           {script.cta}
         </p>
       </div>
 
-      {/* Barra de botões */}
+      {/* Barra de botÃµes */}
       <div className="flex gap-3 mt-5 flex-wrap">
         <button
           onClick={() => {
@@ -629,7 +629,7 @@ function RecreateTab({ script }: RecreateTabProps) {
           className="bg-zinc-800 hover:bg-zinc-700 px-4 h-9 rounded-xl text-sm flex items-center gap-1.5 transition-colors text-zinc-100 font-medium"
         >
           <Copy size={14} />
-          <span>📋 Copiar Roteiro</span>
+          <span>ðŸ“‹ Copiar Roteiro</span>
         </button>
 
         <button
@@ -637,22 +637,22 @@ function RecreateTab({ script }: RecreateTabProps) {
           className="bg-zinc-800 hover:bg-zinc-700 px-4 h-9 rounded-xl text-sm flex items-center gap-1.5 transition-colors text-zinc-100 font-medium"
         >
           <Download size={14} />
-          <span>📥 Exportar .TXT</span>
+          <span>ðŸ“¥ Exportar .TXT</span>
         </button>
 
         <button
           onClick={() => setScriptState('idle')}
-          className="bg-violet-600 hover:bg-violet-500 px-4 h-9 rounded-xl text-sm flex items-center gap-1.5 transition-colors text-white font-medium"
+          className="bg-blue-600 hover:bg-blue-500 px-4 h-9 rounded-xl text-sm flex items-center gap-1.5 transition-colors text-white font-medium"
         >
           <RefreshCw size={14} />
-          <span>🔄 Regenerar</span>
+          <span>ðŸ”„ Regenerar</span>
         </button>
       </div>
     </div>
   );
 }
 
-/* ─────────────── ABA 3: TRANSCRIPT TAB ─────────────── */
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ ABA 3: TRANSCRIPT TAB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 interface TranscriptLineData {
   second: number;
@@ -671,7 +671,7 @@ function TranscriptTab({ transcript }: TranscriptTabProps) {
   const remodelStyles = [
     'Mais Viral',
     'Mais Emocional',
-    'Mais Engraçado',
+    'Mais EngraÃ§ado',
     'Mais Profissional',
     'Mais Curto',
     'Mais Impactante',
@@ -679,8 +679,8 @@ function TranscriptTab({ transcript }: TranscriptTabProps) {
 
   const lineClasses = {
     hook: 'bg-amber-950/40 border-l-2 border-amber-500',
-    cta: 'bg-cyan-950/40 border-l-2 border-cyan-500',
-    highlight: 'bg-violet-950/40 border-l-2 border-violet-500',
+    cta: 'bg-sky-950/40 border-l-2 border-sky-500',
+    highlight: 'bg-blue-950/40 border-l-2 border-blue-500',
     normal: '',
   };
 
@@ -692,14 +692,14 @@ function TranscriptTab({ transcript }: TranscriptTabProps) {
     }, 2000);
   };
 
-  const mockRewriteText = `[00:00] 🚀 E SE você pudesse duplicar suas visualizações apenas mudando a primeira frase dos seus vídeos? \n[00:08] 🧠 O segredo não está na edição, mas na forma como você ativa a curiosidade do seu cérebro nos primeiros 3 segundos. \n[00:20] ⚡ Quer dominar essa estratégia agora? Escreva "QUERO" aqui embaixo e vou enviar o guia completo direto no seu direct!`;
+  const mockRewriteText = `[00:00] ðŸš€ E SE vocÃª pudesse duplicar suas visualizaÃ§Ãµes apenas mudando a primeira frase dos seus vÃ­deos? \n[00:08] ðŸ§  O segredo nÃ£o estÃ¡ na ediÃ§Ã£o, mas na forma como vocÃª ativa a curiosidade do seu cÃ©rebro nos primeiros 3 segundos. \n[00:20] âš¡ Quer dominar essa estratÃ©gia agora? Escreva "QUERO" aqui embaixo e vou enviar o guia completo direto no seu direct!`;
 
   return (
     <div className="space-y-6">
-      {/* Transcrição Original */}
+      {/* TranscriÃ§Ã£o Original */}
       <div>
         <h4 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">
-          TRANSCRIÇÃO DO VÍDEO
+          TRANSCRIÃ‡ÃƒO DO VÃDEO
         </h4>
 
         <div className="space-y-1">
@@ -720,22 +720,22 @@ function TranscriptTab({ transcript }: TranscriptTabProps) {
 
         {/* Legenda */}
         <div className="flex gap-4 mt-4 text-xs text-zinc-500 font-mono">
-          <span>🟡 Hook</span>
-          <span>🔵 CTA</span>
-          <span>🟣 Destaque</span>
-          <span>⬜ Normal</span>
+          <span>ðŸŸ¡ Hook</span>
+          <span>ðŸ”µ CTA</span>
+          <span>ðŸŸ£ Destaque</span>
+          <span>â¬œ Normal</span>
         </div>
       </div>
 
-      {/* Separador com botão */}
+      {/* Separador com botÃ£o */}
       <div className="relative border-t border-zinc-800 my-7 flex items-center justify-center">
         <button
           onClick={handleRemodel}
           disabled={!selectedStyle || rewriteState === 'loading'}
-          className="absolute bg-zinc-950 px-3 flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm px-5 h-9 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          className="absolute bg-zinc-950 px-3 flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm px-5 h-9 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           <Sparkles className="w-4 h-4" />
-          <span>✨ Remodelar com IA</span>
+          <span>âœ¨ Remodelar com IA</span>
         </button>
       </div>
 
@@ -754,7 +754,7 @@ function TranscriptTab({ transcript }: TranscriptTabProps) {
                 onClick={() => setSelectedStyle(style)}
                 className={`transition-colors font-medium text-center ${
                   isSelected
-                    ? 'border border-violet-500 bg-violet-950/40 text-violet-300 rounded-lg px-3 py-2 text-sm'
+                    ? 'border border-blue-500 bg-blue-950/40 text-blue-300 rounded-lg px-3 py-2 text-sm'
                     : 'border border-zinc-700 rounded-lg px-3 py-2 text-sm text-zinc-400 hover:border-zinc-500 cursor-pointer'
                 }`}
               >
@@ -768,7 +768,7 @@ function TranscriptTab({ transcript }: TranscriptTabProps) {
       {/* Estado rewrite */}
       {rewriteState === 'loading' && (
         <div className="text-center py-6">
-          <Loader2 className="text-violet-400 animate-spin mt-4 mx-auto w-8 h-8" />
+          <Loader2 className="text-blue-400 animate-spin mt-4 mx-auto w-8 h-8" />
           <p className="text-sm text-zinc-400 mt-2 text-center">
             IA reescrevendo roteiro...
           </p>
@@ -777,7 +777,7 @@ function TranscriptTab({ transcript }: TranscriptTabProps) {
 
       {rewriteState === 'ready' && (
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 mt-4">
-          <div className="bg-violet-800 text-violet-200 text-xs px-2 py-0.5 rounded mb-3 inline-block font-mono font-semibold">
+          <div className="bg-blue-800 text-blue-200 text-xs px-2 py-0.5 rounded mb-3 inline-block font-mono font-semibold">
             Estilo: {selectedStyle}
           </div>
 
@@ -823,3 +823,4 @@ function TranscriptTab({ transcript }: TranscriptTabProps) {
     </div>
   );
 }
+

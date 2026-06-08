@@ -1,10 +1,10 @@
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
+﻿import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { useAuth } from '@/hooks/useAuth';
 import { Download, ShieldCheck, HelpCircle } from 'lucide-react';
 
 export const Route = createFileRoute('/profile')({
-  head: () => ({ meta: [{ title: 'Perfil — ViralMind System' }] }),
+  head: () => ({ meta: [{ title: 'Perfil â€” ViralMind System' }] }),
   component: ProfilePage,
 });
 
@@ -12,7 +12,7 @@ function ProfilePage() {
   const navigate = useNavigate();
   const { user, logout, isAdmin } = useAuth();
 
-  const username = user?.username || 'João Silva';
+  const username = user?.username || 'JoÃ£o Silva';
   const plan = user?.plan || 'free';
   const credits = user?.credits ?? 3;
 
@@ -61,7 +61,7 @@ function ProfilePage() {
       <div className="mx-auto w-full max-w-2xl px-4 py-8 md:px-6 md:py-12 text-white">
         <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-6 md:p-8 shadow-[0_0_0_1px_#3F3F46,0_4px_24px_rgba(0,0,0,0.4)]">
           <div className="flex flex-col items-center text-center">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-cyan-500 text-2xl font-bold text-white shadow-lg shadow-violet-950">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-sky-500 text-2xl font-bold text-white shadow-lg shadow-blue-950">
               {initials}
             </div>
             <h1 className="mt-4 text-2xl font-bold text-white">{username}</h1>
@@ -69,31 +69,31 @@ function ProfilePage() {
             
             <span className={`mt-3 inline-block rounded-full px-3.5 py-1 text-xs font-bold uppercase border ${
               plan === 'elite' 
-                ? 'bg-cyan-950 text-cyan-400 border-cyan-900' 
+                ? 'bg-sky-950 text-sky-400 border-sky-900' 
                 : plan === 'pro' 
-                ? 'bg-violet-950 text-violet-400 border-violet-900' 
+                ? 'bg-blue-950 text-blue-400 border-blue-900' 
                 : 'bg-zinc-800 text-zinc-300 border-zinc-700'
             }`}>
               Plano {plan === 'free' ? 'Gratuito' : plan === 'pro' ? 'Pro' : 'Elite'}
             </span>
             <p className="mt-2 max-w-sm text-xs text-zinc-500">
-              {plan === 'free' && 'Acesso a 3 análises de vídeo iniciais com relatórios básicos.'}
-              {plan === 'pro' && 'Acesso a 50 análises de vídeo com IA, ganchos e recreação de roteiros.'}
-              {plan === 'elite' && 'Acesso ilimitado total sem restrições a todos os recursos da plataforma.'}
+              {plan === 'free' && 'Acesso a 3 anÃ¡lises de vÃ­deo iniciais com relatÃ³rios bÃ¡sicos.'}
+              {plan === 'pro' && 'Acesso a 50 anÃ¡lises de vÃ­deo com IA, ganchos e recreaÃ§Ã£o de roteiros.'}
+              {plan === 'elite' && 'Acesso ilimitado total sem restriÃ§Ãµes a todos os recursos da plataforma.'}
             </p>
           </div>
 
           <div className="mt-8 rounded-xl border border-zinc-800 bg-zinc-950/50 p-5">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold text-zinc-400">Créditos restantes</span>
-              <span className="font-mono text-sm text-violet-300 font-bold">
-                {plan === 'elite' ? '∞' : `${credits} / ${totalCredits}`}
+              <span className="text-sm font-semibold text-zinc-400">CrÃ©ditos restantes</span>
+              <span className="font-mono text-sm text-blue-300 font-bold">
+                {plan === 'elite' ? 'âˆž' : `${credits} / ${totalCredits}`}
               </span>
             </div>
             <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-zinc-800">
               <div
                 className={`h-full rounded-full transition-all ${
-                  plan === 'elite' ? 'bg-cyan-400' : 'bg-violet-500'
+                  plan === 'elite' ? 'bg-sky-400' : 'bg-blue-500'
                 }`}
                 style={{ width: `${pct}%` }}
               />
@@ -101,7 +101,7 @@ function ProfilePage() {
           </div>
 
           <div className="mt-8 border-t border-zinc-800 pt-6 space-y-4">
-            <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">Ações de Conformidade</h3>
+            <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">AÃ§Ãµes de Conformidade</h3>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <button
@@ -112,7 +112,7 @@ function ProfilePage() {
               </button>
               
               <button
-                onClick={() => alert('Mock: Todos os seus logs e registros foram excluídos permanentemente.')}
+                onClick={() => alert('Mock: Todos os seus logs e registros foram excluÃ­dos permanentemente.')}
                 className="flex items-center justify-center gap-1.5 rounded-lg border border-red-950 hover:bg-red-950/20 px-4 py-2.5 text-center text-sm font-semibold text-red-400 transition cursor-pointer"
               >
                 Excluir Minha Conta
@@ -123,7 +123,7 @@ function ProfilePage() {
           <div className="mt-8 border-t border-zinc-800 pt-6 flex flex-col gap-2 sm:flex-row">
             <button
               onClick={() => navigate({ to: '/pricing' })}
-              className="flex-grow rounded-lg bg-violet-600 hover:bg-violet-500 px-4 py-2.5 text-sm font-semibold text-white transition cursor-pointer active:scale-95 text-center"
+              className="flex-grow rounded-lg bg-blue-600 hover:bg-blue-500 px-4 py-2.5 text-sm font-semibold text-white transition cursor-pointer active:scale-95 text-center"
             >
               Gerenciar Plano & Assinaturas
             </button>
@@ -144,3 +144,4 @@ function ProfilePage() {
   );
 }
 export { ProfilePage };
+

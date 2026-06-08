@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
+﻿import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Brain, Lock, Mail, User, ShieldAlert, Sparkles, Chrome, Github } from 'lucide-react';
@@ -7,7 +7,7 @@ import { fadeInUp } from '@/lib/animations';
 
 export const Route = createFileRoute('/auth')({
   head: () => ({
-    meta: [{ title: 'Entrar — ViralMind System' }],
+    meta: [{ title: 'Entrar â€” ViralMind System' }],
   }),
   component: AuthPage,
 });
@@ -72,8 +72,8 @@ function AuthPage() {
   return (
     <div className="min-h-screen bg-[#09090B] text-white flex flex-col justify-center items-center px-4 py-12 relative overflow-hidden">
       {/* Dynamic Background Glows */}
-      <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-violet-600/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-sky-500/10 rounded-full blur-[100px] pointer-events-none" />
 
       <motion.div
         {...fadeInUp}
@@ -81,14 +81,14 @@ function AuthPage() {
       >
         {/* Brand Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex p-3 bg-violet-950/40 border border-violet-800 rounded-xl mb-4">
-            <Brain className="w-8 h-8 text-violet-400" />
+          <div className="inline-flex p-3 bg-blue-950/40 border border-blue-800 rounded-xl mb-4">
+            <Brain className="w-8 h-8 text-blue-400" />
           </div>
-          <h1 className="text-3xl font-black tracking-tight bg-gradient-to-r from-violet-500 to-cyan-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-black tracking-tight bg-gradient-to-r from-blue-500 to-sky-400 bg-clip-text text-transparent">
             ViralMind System
           </h1>
           <p className="text-sm text-zinc-400 mt-2">
-            O ecossistema definitivo para análise de conteúdo viral.
+            O ecossistema definitivo para anÃ¡lise de conteÃºdo viral.
           </p>
         </div>
 
@@ -149,7 +149,7 @@ function AuthPage() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="Seu nome"
-                  className="w-full h-11 bg-zinc-950 border border-zinc-850 rounded-xl pl-10 pr-4 text-zinc-100 placeholder-zinc-500 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500/50 transition-colors text-sm"
+                  className="w-full h-11 bg-zinc-950 border border-zinc-850 rounded-xl pl-10 pr-4 text-zinc-100 placeholder-zinc-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors text-sm"
                 />
               </div>
             </div>
@@ -167,7 +167,7 @@ function AuthPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="exemplo@email.com"
-                className="w-full h-11 bg-zinc-950 border border-zinc-850 rounded-xl pl-10 pr-4 text-zinc-100 placeholder-zinc-500 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500/50 transition-colors text-sm"
+                className="w-full h-11 bg-zinc-950 border border-zinc-850 rounded-xl pl-10 pr-4 text-zinc-100 placeholder-zinc-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors text-sm"
               />
             </div>
           </div>
@@ -182,9 +182,9 @@ function AuthPage() {
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    alert('Mock: Instruções de recuperação enviadas.');
+                    alert('Mock: InstruÃ§Ãµes de recuperaÃ§Ã£o enviadas.');
                   }}
-                  className="text-xs text-violet-400 hover:text-violet-300 transition-colors"
+                  className="text-xs text-blue-400 hover:text-blue-300 transition-colors"
                 >
                   Esqueceu a senha?
                 </a>
@@ -197,8 +197,8 @@ function AuthPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="w-full h-11 bg-zinc-950 border border-zinc-850 rounded-xl pl-10 pr-4 text-zinc-100 placeholder-zinc-500 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500/50 transition-colors text-sm"
+                placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                className="w-full h-11 bg-zinc-950 border border-zinc-850 rounded-xl pl-10 pr-4 text-zinc-100 placeholder-zinc-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors text-sm"
               />
             </div>
           </div>
@@ -206,7 +206,7 @@ function AuthPage() {
           <button
             type="submit"
             disabled={loadingState}
-            className="w-full h-11 bg-violet-600 hover:bg-violet-500 active:scale-98 disabled:opacity-50 text-white font-semibold rounded-xl transition-all text-sm flex items-center justify-center gap-2 mt-6 cursor-pointer shadow-lg shadow-violet-900/20"
+            className="w-full h-11 bg-blue-600 hover:bg-blue-500 active:scale-98 disabled:opacity-50 text-white font-semibold rounded-xl transition-all text-sm flex items-center justify-center gap-2 mt-6 cursor-pointer shadow-lg shadow-blue-900/20"
           >
             {loadingState ? (
               <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -214,7 +214,7 @@ function AuthPage() {
               <>
                 <Sparkles size={14} />
                 <span>
-                  {activeTab === 'login' ? 'Acessar Plataforma' : 'Criar Conta Grátis'}
+                  {activeTab === 'login' ? 'Acessar Plataforma' : 'Criar Conta GrÃ¡tis'}
                 </span>
               </>
             )}
@@ -250,9 +250,10 @@ function AuthPage() {
 
         {/* Helpful Tip */}
         <div className="mt-6 text-center text-xs text-zinc-500 bg-zinc-950/50 rounded-lg p-2 border border-zinc-900">
-          💡 Dica: Digite <code className="text-violet-400 font-mono">admin</code> no e-mail para entrar com privilégios de administrador.
+          ðŸ’¡ Dica: Digite <code className="text-blue-400 font-mono">admin</code> no e-mail para entrar com privilÃ©gios de administrador.
         </div>
       </motion.div>
     </div>
   );
 }
+

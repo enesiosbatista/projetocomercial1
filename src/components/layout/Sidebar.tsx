@@ -1,4 +1,4 @@
-import { Link, useRouterState, useNavigate } from '@tanstack/react-router';
+﻿import { Link, useRouterState, useNavigate } from '@tanstack/react-router';
 import {
   Brain,
   ChevronLeft,
@@ -20,7 +20,7 @@ export function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle:
   const navigate = useNavigate();
   const { user, isAdmin } = useAuth();
 
-  const username = user?.username || 'João Silva';
+  const username = user?.username || 'JoÃ£o Silva';
   const plan = user?.plan || 'free';
 
   const initials = username
@@ -33,12 +33,12 @@ export function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle:
 
   // Main navigation elements
   const nav = [
-    { to: '/', label: 'Início', icon: Home, exact: true },
-    { to: '/analyze', label: 'Nova Análise', icon: Search },
+    { to: '/', label: 'InÃ­cio', icon: Home, exact: true },
+    { to: '/analyze', label: 'Nova AnÃ¡lise', icon: Search },
     { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { to: '/connect', label: 'Conectar Contas', icon: Link2 },
     { to: '/insights', label: 'IA Consultora', icon: Brain },
-    { to: '/pricing', label: 'Preços e Planos', icon: DollarSign },
+    { to: '/pricing', label: 'PreÃ§os e Planos', icon: DollarSign },
   ];
 
   // Dynamic admin shortcut in sidebar if role allows
@@ -55,13 +55,13 @@ export function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle:
       <div className="relative flex h-14 items-center px-3">
         {!collapsed && (
           <Link to="/" className="flex items-center gap-2">
-            <Zap className="h-4 w-4 text-violet-500 shrink-0" fill="currentColor" />
+            <Zap className="h-4 w-4 text-blue-500 shrink-0" fill="currentColor" />
             <span className="text-sm font-bold text-white">ViralMind System</span>
           </Link>
         )}
         {collapsed && (
           <div className="flex w-full justify-center">
-            <Zap className="h-4 w-4 text-violet-500" fill="currentColor" />
+            <Zap className="h-4 w-4 text-blue-500" fill="currentColor" />
           </div>
         )}
         <button
@@ -83,7 +83,7 @@ export function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle:
               title={collapsed ? label : undefined}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors cursor-pointer ${
                 active
-                  ? 'bg-violet-950/50 text-violet-400 border-l-2 border-violet-500 font-medium'
+                  ? 'bg-blue-950/50 text-blue-400 border-l-2 border-blue-500 font-medium'
                   : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50'
               } ${collapsed ? 'justify-center' : ''}`}
             >
@@ -134,7 +134,7 @@ export function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle:
             collapsed ? 'justify-center' : ''
           }`}
         >
-          <div className="w-8 h-8 rounded-full bg-violet-700 flex items-center justify-center text-xs font-bold shrink-0 text-white">
+          <div className="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center text-xs font-bold shrink-0 text-white">
             {initials}
           </div>
           {!collapsed && (
@@ -142,9 +142,9 @@ export function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle:
               <p className="text-sm font-medium text-white truncate">{username}</p>
               <span className={`text-xs rounded px-1.5 py-0.5 block w-fit mt-0.5 border ${
                 plan === 'elite' 
-                  ? 'bg-cyan-950 text-cyan-400 border-cyan-900 font-bold' 
+                  ? 'bg-sky-950 text-sky-400 border-sky-900 font-bold' 
                   : plan === 'pro' 
-                  ? 'bg-violet-950 text-violet-400 border-violet-900 font-bold' 
+                  ? 'bg-blue-950 text-blue-400 border-blue-900 font-bold' 
                   : 'bg-zinc-850 text-zinc-400 border-zinc-700'
               }`}>
                 Plano {plan.charAt(0).toUpperCase() + plan.slice(1)}
@@ -157,3 +157,4 @@ export function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle:
   );
 }
 export { Sidebar };
+

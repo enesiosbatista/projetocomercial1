@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
+﻿import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
@@ -17,16 +17,16 @@ import { fadeInUp, staggerContainer, staggerItem } from '@/lib/animations';
 export const Route = createFileRoute('/')({
   head: () => ({
     meta: [
-      { title: 'ViralMind System — Descubra por que vídeos viralizam' },
+      { title: 'ViralMind System â€” Descubra por que vÃ­deos viralizam' },
       {
         name: 'description',
         content:
-          'Cole o link de qualquer vídeo e a IA analisa em segundos por que viralizou — ou o que falta para viralizar.',
+          'Cole o link de qualquer vÃ­deo e a IA analisa em segundos por que viralizou â€” ou o que falta para viralizar.',
       },
       { property: 'og:title', content: 'ViralMind System' },
       {
         property: 'og:description',
-        content: 'Análise viral de vídeos com IA em segundos.',
+        content: 'AnÃ¡lise viral de vÃ­deos com IA em segundos.',
       },
     ],
   }),
@@ -34,19 +34,19 @@ export const Route = createFileRoute('/')({
 });
 
 const platformOptions: { value: Platform; emoji: string; label: string }[] = [
-  { value: 'youtube', emoji: '🎬', label: 'YouTube' },
-  { value: 'shorts', emoji: '📱', label: 'Shorts' },
-  { value: 'tiktok', emoji: '🎵', label: 'TikTok' },
-  { value: 'reels', emoji: '📸', label: 'Reels' },
+  { value: 'youtube', emoji: 'ðŸŽ¬', label: 'YouTube' },
+  { value: 'shorts', emoji: 'ðŸ“±', label: 'Shorts' },
+  { value: 'tiktok', emoji: 'ðŸŽµ', label: 'TikTok' },
+  { value: 'reels', emoji: 'ðŸ“¸', label: 'Reels' },
 ];
 
 const features = [
-  { icon: TrendingUp, color: 'text-violet-400', title: 'Score de Viralização', desc: 'Pontuação de 0 a 100 com análise detalhada de cada fator.' },
-  { icon: Zap, color: 'text-amber-400', title: 'Por que viralizou', desc: 'A IA explica exatamente o que fez o vídeo explodir.' },
-  { icon: RefreshCw, color: 'text-cyan-400', title: 'Recriar sem Copiar', desc: 'Gere um novo roteiro com a mesma essência, sem plágio.' },
-  { icon: Mic, color: 'text-violet-400', title: 'Transcrição IA', desc: 'Fala extraída e categorizada por tipo de conteúdo.' },
-  { icon: BarChart2, color: 'text-amber-400', title: 'Curva de Retenção', desc: 'Veja exatamente onde as pessoas param de assistir.' },
-  { icon: Flame, color: 'text-cyan-400', title: 'Modo Viral', desc: 'Tendências do momento com potencial de viralização.' },
+  { icon: TrendingUp, color: 'text-blue-400', title: 'Score de ViralizaÃ§Ã£o', desc: 'PontuaÃ§Ã£o de 0 a 100 com anÃ¡lise detalhada de cada fator.' },
+  { icon: Zap, color: 'text-amber-400', title: 'Por que viralizou', desc: 'A IA explica exatamente o que fez o vÃ­deo explodir.' },
+  { icon: RefreshCw, color: 'text-sky-400', title: 'Recriar sem Copiar', desc: 'Gere um novo roteiro com a mesma essÃªncia, sem plÃ¡gio.' },
+  { icon: Mic, color: 'text-blue-400', title: 'TranscriÃ§Ã£o IA', desc: 'Fala extraÃ­da e categorizada por tipo de conteÃºdo.' },
+  { icon: BarChart2, color: 'text-amber-400', title: 'Curva de RetenÃ§Ã£o', desc: 'Veja exatamente onde as pessoas param de assistir.' },
+  { icon: Flame, color: 'text-sky-400', title: 'Modo Viral', desc: 'TendÃªncias do momento com potencial de viralizaÃ§Ã£o.' },
 ];
 
 function LandingPage() {
@@ -68,8 +68,8 @@ function LandingPage() {
     <div className="min-h-screen bg-[#09090B] text-white">
       <header className="flex items-center justify-between px-6 py-5">
         <div className="flex items-center gap-2">
-          <Zap className="h-5 w-5 text-violet-400" fill="currentColor" />
-          <span className="text-base font-bold text-violet-400">ViralMind System</span>
+          <Zap className="h-5 w-5 text-blue-400" fill="currentColor" />
+          <span className="text-base font-bold text-blue-400">ViralMind System</span>
         </div>
         <Link
           to="/analyze"
@@ -86,8 +86,8 @@ function LandingPage() {
           {...fadeInUp}
           transition={{ ...fadeInUp.transition, delay: 0 }}
         >
-          <span className="border border-zinc-700 bg-zinc-900 text-violet-400 text-sm px-4 py-1.5 rounded-full inline-flex items-center gap-2">
-            🔥 +12.847 vídeos analisados esta semana
+          <span className="border border-zinc-700 bg-zinc-900 text-blue-400 text-sm px-4 py-1.5 rounded-full inline-flex items-center gap-2">
+            ðŸ”¥ +12.847 vÃ­deos analisados esta semana
           </span>
         </motion.div>
 
@@ -97,19 +97,19 @@ function LandingPage() {
           transition={{ ...fadeInUp.transition, delay: 0.1 }}
           className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none mt-6 text-white"
         >
-          Descubra por que vídeos{' '}
-          <span className="bg-gradient-to-r from-violet-500 to-cyan-400 bg-clip-text text-transparent">
+          Descubra por que vÃ­deos{' '}
+          <span className="bg-gradient-to-r from-blue-500 to-sky-400 bg-clip-text text-transparent">
             viralizam
           </span>
         </motion.h1>
 
-        {/* 3. Subtítulo */}
+        {/* 3. SubtÃ­tulo */}
         <motion.p
           {...fadeInUp}
           transition={{ ...fadeInUp.transition, delay: 0.2 }}
           className="text-lg text-zinc-400 max-w-xl mx-auto mt-5 leading-relaxed"
         >
-          Cole o link de qualquer vídeo e a IA analisa em segundos por que viralizou — ou o que falta para viralizar.
+          Cole o link de qualquer vÃ­deo e a IA analisa em segundos por que viralizou â€” ou o que falta para viralizar.
         </motion.p>
 
         {/* 4. Input + CTA */}
@@ -127,28 +127,28 @@ function LandingPage() {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="Cole o link do YouTube, TikTok, Reels ou Shorts..."
-              className="w-full h-14 bg-zinc-900 border border-zinc-700 rounded-xl pl-11 pr-4 text-zinc-100 placeholder-zinc-500 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500/50 transition-colors text-sm"
+              className="w-full h-14 bg-zinc-900 border border-zinc-700 rounded-xl pl-11 pr-4 text-zinc-100 placeholder-zinc-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-colors text-sm"
             />
           </div>
 
           <select
             value={platform}
             onChange={(e) => setPlatform(e.target.value as Platform)}
-            className="w-full sm:w-40 h-14 bg-zinc-900 border border-zinc-700 rounded-xl px-3 text-zinc-300 text-sm focus:border-violet-500 focus:outline-none"
+            className="w-full sm:w-40 h-14 bg-zinc-900 border border-zinc-700 rounded-xl px-3 text-zinc-300 text-sm focus:border-blue-500 focus:outline-none"
           >
-            <option value="youtube">🎬 YouTube</option>
-            <option value="shorts">📱 Shorts</option>
-            <option value="tiktok">🎵 TikTok</option>
-            <option value="reels">📸 Reels</option>
+            <option value="youtube">ðŸŽ¬ YouTube</option>
+            <option value="shorts">ðŸ“± Shorts</option>
+            <option value="tiktok">ðŸŽµ TikTok</option>
+            <option value="reels">ðŸ“¸ Reels</option>
           </select>
 
           <motion.button
             type="submit"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="h-14 px-8 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl whitespace-nowrap transition-colors text-sm flex items-center justify-center gap-2"
+            className="h-14 px-8 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl whitespace-nowrap transition-colors text-sm flex items-center justify-center gap-2"
           >
-            Analisar Agora →
+            Analisar Agora â†’
           </motion.button>
         </motion.form>
 
@@ -158,7 +158,7 @@ function LandingPage() {
           transition={{ ...fadeInUp.transition, delay: 0.4 }}
           className="text-sm text-zinc-500 mt-3"
         >
-          ✓ Grátis para começar ✓ Sem cadastro ✓ Resultado em 30s
+          âœ“ GrÃ¡tis para comeÃ§ar âœ“ Sem cadastro âœ“ Resultado em 30s
         </motion.p>
 
         {/* 6. Social proof */}
@@ -169,9 +169,9 @@ function LandingPage() {
         >
           <div className="flex -space-x-2">
             {[
-              { initials: 'MS', bg: 'bg-violet-700' },
-              { initials: 'AK', bg: 'bg-violet-600' },
-              { initials: 'JP', bg: 'bg-violet-500' },
+              { initials: 'MS', bg: 'bg-blue-700' },
+              { initials: 'AK', bg: 'bg-blue-600' },
+              { initials: 'JP', bg: 'bg-blue-500' },
             ].map((a) => (
               <div
                 key={a.initials}
@@ -182,18 +182,18 @@ function LandingPage() {
             ))}
           </div>
           <span className="text-sm text-zinc-400">
-            ★★★★★ Usado por mais de 3.200 criadores
+            â˜…â˜…â˜…â˜…â˜… Usado por mais de 3.200 criadores
           </span>
         </motion.div>
       </section>
 
-      {/* Seção Features */}
+      {/* SeÃ§Ã£o Features */}
       <section className="mt-24 px-4 max-w-5xl mx-auto pb-24">
         <h2 className="text-3xl font-bold text-center mb-3">
-          Tudo que você precisa para viralizar
+          Tudo que vocÃª precisa para viralizar
         </h2>
         <p className="text-base text-zinc-400 text-center mb-12">
-          Do diagnóstico ao roteiro — tudo em um lugar
+          Do diagnÃ³stico ao roteiro â€” tudo em um lugar
         </p>
 
         <motion.div
@@ -207,7 +207,7 @@ function LandingPage() {
             <motion.div
               key={title}
               variants={staggerItem}
-              className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-violet-500/40 hover:-translate-y-0.5 transition-all duration-200"
+              className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-blue-500/40 hover:-translate-y-0.5 transition-all duration-200"
             >
               <Icon className={`w-6 h-6 ${color}`} />
               <div className="mt-4">
@@ -222,9 +222,10 @@ function LandingPage() {
       {/* Footer */}
       <footer className="mt-8 py-8 border-t border-zinc-800 text-center">
         <p className="text-sm text-zinc-600">
-          © 2026 ViralMind System — Todos os direitos reservados
+          Â© 2026 ViralMind System â€” Todos os direitos reservados
         </p>
       </footer>
     </div>
   );
 }
+
